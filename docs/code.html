@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<html >
+
+<head>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>A Little R Book for Lehman Sociology Students</title>
+  <meta name="description" content="Things you should know or that may help">
+  <meta name="generator" content="bookdown 0.5 and GitBook 2.6.7">
+
+  <meta property="og:title" content="A Little R Book for Lehman Sociology Students" />
+  <meta property="og:type" content="book" />
+  <meta property="og:url" content="https://github.com.com/lehmansociology/book/" />
+  
+  <meta property="og:description" content="Things you should know or that may help" />
+  <meta name="github-repo" content="lehmansociology/book" />
+
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="A Little R Book for Lehman Sociology Students" />
+  
+  <meta name="twitter:description" content="Things you should know or that may help" />
+  
+
+<meta name="author" content="Lehman Sociology">
+
+
+<meta name="date" content="2017-10-15">
+
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black">
+  
+  
+<link rel="prev" href="statistical-functions-for-one-variable.html">
+<link rel="next" href="errors.html">
+<script src="libs/jquery-2.2.3/jquery.min.js"></script>
+<link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-fontsettings.css" rel="stylesheet" />
+
+
+
+
+
+
+
+
+
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
+
+<link rel="stylesheet" href="style.css" type="text/css" />
+</head>
+
+<body>
+
+
+
+  <div class="book without-animation with-summary font-size-2 font-family-1" data-basepath=".">
+
+    <div class="book-summary">
+      <nav role="navigation">
+
+<ul class="summary">
+<li><a href="./">A Book of Useful R Information</a></li>
+
+<li class="divider"></li>
+<li class="chapter" data-level="" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i>Preface</a></li>
+<li class="chapter" data-level="1" data-path="introduction.html"><a href="introduction.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="2" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html"><i class="fa fa-check"></i><b>2</b> Statistical Functions (for one variable)</a><ul>
+<li class="chapter" data-level="2.1" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-core-r"><i class="fa fa-check"></i><b>2.1</b> These are from core R</a></li>
+<li class="chapter" data-level="2.2" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-lehmansociology"><i class="fa fa-check"></i><b>2.2</b> These are from lehmansociology</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code</a><ul>
+<li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#assignment-operator"><i class="fa fa-check"></i><b>3.1</b> Assignment operator</a></li>
+<li class="chapter" data-level="3.2" data-path="code.html"><a href="code.html#combine-function"><i class="fa fa-check"></i><b>3.2</b> Combine function</a></li>
+<li class="chapter" data-level="3.3" data-path="code.html"><a href="code.html#pipe-operator"><i class="fa fa-check"></i><b>3.3</b> Pipe operator</a></li>
+<li class="chapter" data-level="3.4" data-path="code.html"><a href="code.html#basic-math-operations"><i class="fa fa-check"></i><b>3.4</b> Basic math operations</a></li>
+<li class="chapter" data-level="3.5" data-path="code.html"><a href="code.html#comparison-operators"><i class="fa fa-check"></i><b>3.5</b> Comparison operators</a></li>
+<li class="chapter" data-level="3.6" data-path="code.html"><a href="code.html#and-and-or-logical-operators"><i class="fa fa-check"></i><b>3.6</b> AND and OR (logical operators)</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="errors.html"><a href="errors.html"><i class="fa fa-check"></i><b>4</b> Errors</a><ul>
+<li class="chapter" data-level="4.1" data-path="errors.html"><a href="errors.html#could-not-find-function"><i class="fa fa-check"></i><b>4.1</b> Could not find function</a></li>
+<li class="chapter" data-level="4.2" data-path="errors.html"><a href="errors.html#problems-with-variables"><i class="fa fa-check"></i><b>4.2</b> Problems with variables</a></li>
+<li class="chapter" data-level="4.3" data-path="errors.html"><a href="errors.html#problems-with-markdown"><i class="fa fa-check"></i><b>4.3</b> Problems with markdown</a></li>
+<li class="chapter" data-level="4.4" data-path="errors.html"><a href="errors.html#other-problems-when-knittng"><i class="fa fa-check"></i><b>4.4</b> Other problems when knittng</a></li>
+</ul></li>
+<li class="chapter" data-level="5" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html"><i class="fa fa-check"></i><b>5</b> Statistics for Multiple Variables</a><ul>
+<li class="chapter" data-level="5.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-formula-notation"><i class="fa fa-check"></i><b>5.1</b> Using formula notation</a></li>
+<li class="chapter" data-level="5.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-summarize"><i class="fa fa-check"></i><b>5.2</b> Using summarize</a></li>
+<li class="chapter" data-level="5.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#other-approaches"><i class="fa fa-check"></i><b>5.3</b> Other approaches</a></li>
+</ul></li>
+<li class="divider"></li>
+<li><a href="https://github.com/rstudio/bookdown" target="blank">Published with bookdown</a></li>
+
+</ul>
+
+      </nav>
+    </div>
+
+    <div class="book-body">
+      <div class="body-inner">
+        <div class="book-header" role="navigation">
+          <h1>
+            <i class="fa fa-circle-o-notch fa-spin"></i><a href="./">A Little R Book for Lehman Sociology Students</a>
+          </h1>
+        </div>
+
+        <div class="page-wrapper" tabindex="-1" role="main">
+          <div class="page-inner">
+
+            <section class="normal" id="section-">
+<div id="code" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Code</h1>
+<p>This chapter is going to review some basic code items that come up regularly. You should memorize these.</p>
+<div id="assignment-operator" class="section level2">
+<h2><span class="header-section-number">3.1</span> Assignment operator</h2>
+<p><code>&lt;-</code> This is used to assign the value of whatever is on the right to the object on the left.</p>
+<p><code>a &lt;- 4</code> Means that a is now 4.</p>
+<p><code>b &lt;- chickwts</code> Means that b is now a data frame with all the data from chickwts.</p>
+</div>
+<div id="combine-function" class="section level2">
+<h2><span class="header-section-number">3.2</span> Combine function</h2>
+<p><code>c()</code></p>
+<p>This essential function lets you put a set of values into a vector.</p>
+<p><code>a &lt;- c(2, 3, 4, 5)</code><br />
+<code>b &lt;- c(&quot;red&quot;, &quot;yellow&quot;, &quot;blue&quot;)</code> <code>c &lt;- c(TRUE, FALSE, FALSE, TRUE)</code></p>
+<p>Now a, b, and c refer to these sets of values.</p>
+</div>
+<div id="pipe-operator" class="section level2">
+<h2><span class="header-section-number">3.3</span> Pipe operator</h2>
+<p>This is not part of the core of R, but it is widely used. It comes from the <code>magrittr</code> package.</p>
+<p><code>%&gt;%</code></p>
+<p>The way it works is that everything on the left becomes and input to what is done on the right. This is supposed to be more like natural writing.</p>
+<p>The code below says: take the chickwts data, group the rows by the feed variable, then get the mean weight for each of the feed types.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"> <span class="kw">library</span>(magrittr)
+chickwts %&gt;%<span class="st"> </span>dplyr::<span class="kw">group_by</span>(feed) %&gt;%<span class="st"> </span>dplyr::<span class="kw">summarize</span>( <span class="dt">mean=</span><span class="kw">mean</span>(weight)) </code></pre></div>
+<pre><code>## # A tibble: 6 x 2
+##        feed     mean
+##      &lt;fctr&gt;    &lt;dbl&gt;
+## 1    casein 323.5833
+## 2 horsebean 160.2000
+## 3   linseed 218.7500
+## 4  meatmeal 276.9091
+## 5   soybean 246.4286
+## 6 sunflower 328.9167</code></pre>
+<p>Not all functions work with piped data.</p>
+</div>
+<div id="basic-math-operations" class="section level2">
+<h2><span class="header-section-number">3.4</span> Basic math operations</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Operator</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Addition</td>
+<td><code>+</code></td>
+<td><code>3 + 4</code></td>
+<td>7</td>
+</tr>
+<tr class="even">
+<td>Subtraction</td>
+<td><code>-</code></td>
+<td><code>4-3</code></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Multiplication</td>
+<td><code>*</code></td>
+<td><code>3*4</code></td>
+<td>12</td>
+</tr>
+<tr class="even">
+<td>Division</td>
+<td><code>/</code></td>
+<td><code>3/4</code></td>
+<td>0.75</td>
+</tr>
+<tr class="odd">
+<td>Raise to power</td>
+<td><code>^</code></td>
+<td><code>3^4</code></td>
+<td>81</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="comparison-operators" class="section level2">
+<h2><span class="header-section-number">3.5</span> Comparison operators</h2>
+<table>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Operator</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Equal to</td>
+<td><code>==</code></td>
+<td><code>(2+3) == (3+3)</code></td>
+<td>FALSE</td>
+</tr>
+<tr class="even">
+<td>Not equal to</td>
+<td><code>!=</code></td>
+<td><code>(2+3) == (3+3)</code></td>
+<td>FALSE</td>
+</tr>
+<tr class="odd">
+<td>Greater than</td>
+<td><code>&gt;</code></td>
+<td><code>5 &gt;2</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td>Less than</td>
+<td><code>&lt;</code></td>
+<td><code>5 &lt; 2</code></td>
+<td>FALSE</td>
+</tr>
+<tr class="odd">
+<td>Greater than or equal to</td>
+<td><code>&gt;=</code></td>
+<td><code>2 &gt;= 2</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td>Less than or equal to</td>
+<td><code>&lt;=</code></td>
+<td><code>2 &lt;= 3</code></td>
+<td>TRUE</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="and-and-or-logical-operators" class="section level2">
+<h2><span class="header-section-number">3.6</span> AND and OR (logical operators)</h2>
+<p>As you start to do more complex things with recoding variables you will often want to use two or more statements in combination. For example you may want to identify everyone 18 or over but who are also 65 or under.</p>
+<p>For these we use the logical operators. The first set of examples are very simple.</p>
+<table style="width:60%;">
+<colgroup>
+<col width="9%" />
+<col width="12%" />
+<col width="13%" />
+<col width="13%" />
+<col width="9%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th>Name</th>
+<th>Operator</th>
+<th>Meaning</th>
+<th>Example</th>
+<th>Result</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>OR</td>
+<td><code>|</code></td>
+<td>At least one statement is true</td>
+<td><code>7 == 6+1 | 7 == 8-1</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td>OR</td>
+<td><code>|</code></td>
+<td>At least one statement is true</td>
+<td><code>7 == 6+1 | 7 == 8+1</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="odd">
+<td>Exclusive OR</td>
+<td><code>xor(x,y)</code></td>
+<td>Exactly one statement is true</td>
+<td><code>xor(7 == 6+1, 7 == 8-1)</code></td>
+<td>FALSE</td>
+</tr>
+<tr class="even">
+<td>Exclusive OR</td>
+<td><code>xor(x,y)</code></td>
+<td>Exactly one statement is true</td>
+<td><code>xor(7 == 6+1, 7 == 8+1)</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="odd">
+<td>AND</td>
+<td><code>&amp;</code></td>
+<td>All statements are true</td>
+<td><code>7 == 6+1 &amp; 7 == 8-1</code></td>
+<td>TRUE</td>
+</tr>
+<tr class="even">
+<td>AND</td>
+<td><code>&amp;</code></td>
+<td>All statements are true</td>
+<td><code>7 == 6+1 &amp; 7 == 8+1</code></td>
+<td>FALSE</td>
+</tr>
+</tbody>
+</table>
+<p>If you know any other computer languages be aware that <code>|</code> and <code>&amp;</code> and <code>||</code> and <code>&amp;&amp;</code> work differently in R than you might expect.</p>
+
+</div>
+</div>
+            </section>
+
+          </div>
+        </div>
+      </div>
+<a href="statistical-functions-for-one-variable.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="errors.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+    </div>
+  </div>
+<script src="libs/gitbook-2.6.7/js/app.min.js"></script>
+<script src="libs/gitbook-2.6.7/js/lunr.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-search.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-sharing.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-fontsettings.js"></script>
+<script src="libs/gitbook-2.6.7/js/plugin-bookdown.js"></script>
+<script src="libs/gitbook-2.6.7/js/jquery.highlight.js"></script>
+<script>
+gitbook.require(["gitbook"], function(gitbook) {
+gitbook.start({
+"sharing": {
+"github": false,
+"facebook": true,
+"twitter": true,
+"google": false,
+"weibo": false,
+"instapper": false,
+"vk": false,
+"all": ["facebook", "google", "twitter", "weibo", "instapaper"]
+},
+"fontsettings": {
+"theme": "white",
+"family": "sans",
+"size": 2
+},
+"edit": {
+"link": null,
+"text": null
+},
+"download": null,
+"toc": {
+"collapse": "subsection"
+}
+});
+});
+</script>
+
+</body>
+
+</html>
