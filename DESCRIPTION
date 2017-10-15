@@ -1,0 +1,11 @@
+Package: littlerbook
+Title: Little R Book.
+Version: 0.0.1
+Imports: bookdown,
+         dplyr,
+         lehmansociology,
+         skimr,
+         resample
+Remotes: rstudio/bookdown
+         lehmansociology/lehmansociology,
+         ropenscilabs/skimr

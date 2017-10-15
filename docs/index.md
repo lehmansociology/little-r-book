@@ -16,5 +16,8 @@ description: "Things you should know or that may help"
 
 The ideas is to create a useful book that can be expanded collaboartively
 
-Contributors:
+Contributors:  
 Elin Waring
+
+Created using Minimal Bookdown Book by Sean Kross. 
+https://github.com/seankross/bookdown-start

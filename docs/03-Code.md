@@ -88,7 +88,7 @@ you may want to identify everyone 18 or over but who are also 65 or under.
 For these we use the logical operators.  The first set of examples are very simple.
 
 |Name |Operator | Meaning | Example |Result|
-|------|--------|---------|---------|------|
+|------|---------|------------------------|-------------------------|------|
 |OR | `|`  | At least one statement is true | `7 == 6+1 | 7 == 8-1` |TRUE |
 |OR | `|`  | At least one statement is true | `7 == 6+1 | 7 == 8+1` |TRUE |
 |Exclusive OR | `xor(x,y)`  | Exactly one statement is true | `xor(7 == 6+1, 7 == 8-1)` |FALSE |
