@@ -2,6 +2,6 @@ book_filename: "bookdown-start"
 chapter_name: "Chapter "
 repo: https://github.com/seankross/bookdown-start
 output_dir: docs
-rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-Diving-In.Rmd"]
+rmd_files: ["index.Rmd", "01-Introduction.Rmd", "02-Statistical-Functions.Rmd", "03-Code.Rmd", "04-Errors.Rmd", "05-Statistics-with_mulitple-variables.Rmd"]
 clean: [packages.bib, bookdown.bbl]
 new_session: yes

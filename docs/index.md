@@ -1,17 +1,20 @@
 --- 
-title: "A Minimal Bookdown Book"
-author: "Sean Kross"
-date: "2016-12-09"
+title: "A Little R Book for Lehman Sociology Students"
+author: "Lehman Sociology"
+date: "2017-10-15"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]
 biblio-style: apalike
 link-citations: yes
-github-repo: seankross/bookdown-start
-url: 'http\://seankross.com/bookdown-start/'
-description: "Everything you need (and nothing more) to start a bookdown book."
+github-repo: lehmansociology/book
+url: 'https\://github.com.com/lehmansociology/book/'
+description: "Things you should know or that may help"
 ---
 
 # Preface {-}
 
-This is the very first part of the book.
+The ideas is to create a useful book that can be expanded collaboartively
+
+Contributors:
+Elin Waring
