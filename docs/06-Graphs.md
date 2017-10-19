@@ -45,6 +45,7 @@ To add data to the axes you use a "geom" that determines the type of display.  T
 axis, it adds data to it. To show this, let's save the ggplot information and add to it.
 
 Our first example is only for one variable.  Often, you will want to add options such as binwidth.
+The last example shows how to use a slightly different approach to graph the cumulative distribution (ecdf).
 
 
 ```r
@@ -75,6 +76,12 @@ graph1 + geom_density()
 ```
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-2-4.png" width="672" />
+
+```r
+graph1 + stat_ecdf(geom = "step")
+```
+
+<img src="06-Graphs_files/figure-html/unnamed-chunk-2-5.png" width="672" />
 
 Our second example uses two interval variables, so has different possibilities than the first. 
 The second one shows one way that geoms can be combined.
