@@ -1,7 +1,7 @@
 --- 
 title: "A Little R Book for Lehman Sociology Students"
 author: "Lehman Sociology"
-date: "2017-10-18"
+date: "2017-10-19"
 site: bookdown::bookdown_site
 documentclass: book
 bibliography: [book.bib]

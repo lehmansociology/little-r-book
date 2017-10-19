@@ -25,7 +25,7 @@
 <meta name="author" content="Lehman Sociology">
 
 
-<meta name="date" content="2017-10-18">
+<meta name="date" content="2017-10-19">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -130,8 +130,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="6" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>6</b> Graphs</a><ul>
 <li class="chapter" data-level="6.1" data-path="graphs.html"><a href="graphs.html#how-ggplot-works"><i class="fa fa-check"></i><b>6.1</b> How ggplot works</a><ul>
 <li class="chapter" data-level="6.1.1" data-path="graphs.html"><a href="graphs.html#ggplot"><i class="fa fa-check"></i><b>6.1.1</b> ggplot()</a></li>
-<li class="chapter" data-level="6.1.2" data-path="graphs.html"><a href="graphs.html#adding-geom_s"><i class="fa fa-check"></i><b>6.1.2</b> Adding geom_s</a></li>
-<li class="chapter" data-level="6.1.3" data-path="graphs.html"><a href="graphs.html#add-titles-and-labels"><i class="fa fa-check"></i><b>6.1.3</b> Add titles and labels</a></li>
+<li class="chapter" data-level="6.1.2" data-path="graphs.html"><a href="graphs.html#adding-geom"><i class="fa fa-check"></i><b>6.1.2</b> Adding geom</a></li>
+<li class="chapter" data-level="6.1.3" data-path="graphs.html"><a href="graphs.html#add-titles-and-labels-modify-axes"><i class="fa fa-check"></i><b>6.1.3</b> Add titles and labels, modify axes</a></li>
 </ul></li>
 <li class="chapter" data-level="6.2" data-path="graphs.html"><a href="graphs.html#common-problems"><i class="fa fa-check"></i><b>6.2</b> Common problems</a><ul>
 <li class="chapter" data-level="6.2.1" data-path="graphs.html"><a href="graphs.html#unexpected-symbol"><i class="fa fa-check"></i><b>6.2.1</b> unexpected symbol</a></li>
@@ -180,16 +180,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Sepal.Width))</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
 </div>
-<div id="adding-geom_s" class="section level3">
-<h3><span class="header-section-number">6.1.2</span> Adding geom_s</h3>
+<div id="adding-geom" class="section level3">
+<h3><span class="header-section-number">6.1.2</span> Adding geom</h3>
 <p>To add data to the axes you use a “geom” that determines the type of display. The geom does not modify the axis, it adds data to it. To show this, let’s save the ggplot information and add to it.</p>
-<p>Our first example is only for one variable.</p>
+<p>Our first example is only for one variable. Often, you will want to add options such as binwidth.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length))  
 graph1 +<span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph1 +<span class="st"> </span><span class="kw">geom_dotplot</span>()</code></pre></div>
-<pre><code>## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph1 +<span class="st"> </span><span class="kw">geom_dotplot</span>(<span class="dt">binwidth =</span> .<span class="dv">1</span>)</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph1 +<span class="st"> </span><span class="kw">geom_bar</span>()</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
@@ -203,25 +202,38 @@ graph2 +<span class="st"> </span><span class="kw">geom_point</span>()</code></pr
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph2 +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">geom_smooth</span>()</code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph2_with_species &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width, <span class="dt">color =</span> Species)) +<span class="st"> </span><span class="kw">geom_point</span>()
+graph2_with_species</code></pre></div>
+<p><img src="06-Graphs_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
 <p>This data includes two types of data. The last example shows how multiple geoms can be combined.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Sepal.Width))
 
 graph3 +<span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_jitter</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_count</span>()</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_jitter</span>()</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">geom_jitter</span>()</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_boxplot</span>()</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_boxplot</span>() +<span class="st"> </span><span class="kw">geom_jitter</span>()</code></pre></div>
+<p><img src="06-Graphs_files/figure-html/unnamed-chunk-4-5.png" width="672" /></p>
 </div>
-<div id="add-titles-and-labels" class="section level3">
-<h3><span class="header-section-number">6.1.3</span> Add titles and labels</h3>
-<p>There are many additional options that you can use. This document will just show how to add a title and labels.</p>
+<div id="add-titles-and-labels-modify-axes" class="section level3">
+<h3><span class="header-section-number">6.1.3</span> Add titles and labels, modify axes</h3>
+<p>There are many additional options that you can use. This document will just show how to add a title and labels and modify axes.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 +<span class="st"> </span><span class="kw">geom_jitter</span>() +
 <span class="st">        </span><span class="kw">ggtitle</span>(<span class="st">&quot;Sepal Width by Species in the Iris Data&quot;</span>) +
 <span class="st">        </span><span class="kw">labs</span>(<span class="dt">y=</span><span class="st">&quot;Sepal Width&quot;</span>, <span class="dt">x=</span><span class="st">&quot;Iris Species&quot;</span>)  </code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p>The way to modify axes is to use <code>scale_y_continuous</code> and <code>scale_x_continuous</code>. These are very flexible and have many options. This section will show how to change or improve some of the previous plots.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Remove irrelevant y axis values</span>
+graph1 +<span class="st"> </span><span class="kw">geom_dotplot</span>(<span class="dt">binwidth =</span> .<span class="dv">1</span>) +
+<span class="st">         </span><span class="kw">scale_y_continuous</span>(<span class="ot">NULL</span>, <span class="dt">breaks =</span> <span class="ot">NULL</span>)</code></pre></div>
+<p><img src="06-Graphs_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Use the same tick marks on the x axis match those on the y axis</span>
+graph2 +<span class="st"> </span><span class="kw">geom_point</span>() +<span class="st"> </span><span class="kw">scale_x_continuous</span>( <span class="dt">breaks =</span> <span class="kw">seq</span>(<span class="dv">4</span>, <span class="dv">8</span>, .<span class="dv">5</span>), <span class="dt">minor_breaks =</span> <span class="kw">waiver</span>())</code></pre></div>
+<p><img src="06-Graphs_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
 <p>There are several websites that give detailed examples of more complex ways to create visualizations.</p>
 </div>
 </div>

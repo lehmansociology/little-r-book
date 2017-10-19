@@ -40,11 +40,11 @@ ggplot(iris, aes(x = Species, y = Sepal.Width))
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-1-3.png" width="672" />
 
-### Adding geom_s
+### Adding geom 
 To add data to the axes you use a "geom" that determines the type of display.  The geom does not modify the
 axis, it adds data to it. To show this, let's save the ggplot information and add to it.
 
-Our first example is only for one variable.
+Our first example is only for one variable.  Often, you will want to add options such as binwidth.
 
 
 ```r
@@ -59,11 +59,7 @@ graph1 + geom_histogram()
 <img src="06-Graphs_files/figure-html/unnamed-chunk-2-1.png" width="672" />
 
 ```r
-graph1 + geom_dotplot()
-```
-
-```
-## `stat_bindot()` using `bins = 30`. Pick better value with `binwidth`.
+graph1 + geom_dotplot(binwidth = .1)
 ```
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-2-2.png" width="672" />
@@ -102,6 +98,13 @@ graph2 + geom_point() + geom_smooth()
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-3-2.png" width="672" />
 
+```r
+graph2_with_species <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_point()
+graph2_with_species
+```
+
+<img src="06-Graphs_files/figure-html/unnamed-chunk-3-3.png" width="672" />
+
 This data includes two types of data.  The last example shows how multiple geoms can be combined.
 
 
@@ -114,26 +117,33 @@ graph3 + geom_point()
 <img src="06-Graphs_files/figure-html/unnamed-chunk-4-1.png" width="672" />
 
 ```r
-graph3 + geom_jitter()
+graph3 + geom_count()
 ```
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-4-2.png" width="672" />
 
 ```r
-graph3 + geom_boxplot()
+graph3 + geom_jitter()
 ```
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-4-3.png" width="672" />
 
 ```r
-graph3 + geom_boxplot() + geom_jitter()
+graph3 + geom_boxplot()
 ```
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-4-4.png" width="672" />
 
-### Add titles and labels
+```r
+graph3 + geom_boxplot() + geom_jitter()
+```
+
+<img src="06-Graphs_files/figure-html/unnamed-chunk-4-5.png" width="672" />
+
+### Add titles and labels, modify axes
+
 There are many additional options that you can use. This document will just show how to add a title
-and labels.
+and labels and modify axes.
 
 ```r
 graph3 + geom_jitter() +
@@ -143,6 +153,24 @@ graph3 + geom_jitter() +
 
 <img src="06-Graphs_files/figure-html/unnamed-chunk-5-1.png" width="672" />
 
+The way to modify axes is to use `scale_y_continuous` and `scale_x_continuous`.  These are very flexible and 
+have many options. This section will show how to change or improve some of the previous plots.
+
+
+```r
+# Remove irrelevant y axis values
+graph1 + geom_dotplot(binwidth = .1) +
+         scale_y_continuous(NULL, breaks = NULL)
+```
+
+<img src="06-Graphs_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+
+```r
+# Use the same tick marks on the x axis match those on the y axis
+graph2 + geom_point() + scale_x_continuous( breaks = seq(4, 8, .5), minor_breaks = waiver())
+```
+
+<img src="06-Graphs_files/figure-html/unnamed-chunk-6-2.png" width="672" />
 
 
  There are several websites that give detailed examples of more complex ways to create visualizations. 
