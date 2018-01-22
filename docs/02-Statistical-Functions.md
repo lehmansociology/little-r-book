@@ -1,3 +1,8 @@
+---
+output:
+  html_document: default
+  word_document: default
+---
 # Statistical Functions (for one variable)
 
 Here are some basic statistical functions you should really know by heart. 
@@ -33,13 +38,15 @@ var(chickwts$weight, na.rm = TRUE)
 ```r
 # Variance (for a population)
 # There is no simple function for this.  The code below shows one possible way
-# The length() function gives you the total rows and na.omit() ensures that you are not counting NAs, since
-# they are not in the calculation of var(). 
-var(chickwts$weight, na.rm = TRUE)*(length(na.omit(chickwts$weight)/(length(na.omit(chickwts$weight)) - 1)))
+# The length() function gives you the total rows and na.omit() ensures that you 
+# are not counting NAs, since they are not in the calculation of var(). 
+var(chickwts$weight, na.rm = TRUE)*  
+                         (length(na.omit(chickwts$weight)) - 1)/
+                         length(chickwts$weight)
 ```
 
 ```
-## [1] 432780.7
+## [1] 6009.65
 ```
 
 ```r
@@ -54,7 +61,8 @@ sd(chickwts$weight, na.rm = TRUE)
 ```r
 # Note there is no simple conversion from sample standard deviation
 # to population standard deviation.
-# Calculate the population variance and take the square root.
+# Calculate the population variance and take the square root. See the next
+# section.
 
 # Median
 median(chickwts$weight, na.rm = TRUE)
@@ -145,8 +153,12 @@ summary(chickwts$feed)
 Since that is a package you either need to load it with library() or use the notation we use here.
 
 
+
 ```r
-# Mode
+# MODE
+# Notice that you must use all upper case. This is because there is
+# already a function called mode in base r that does something 
+# completely unrelated.
 lehmansociology::MODE(chickwts$feed)
 ```
 
@@ -156,7 +168,7 @@ lehmansociology::MODE(chickwts$feed)
 ```
 
 ```r
-# Frequency
+# frequency
 lehmansociology::frequency(chickwts$feed)
 ```
 
@@ -169,6 +181,26 @@ lehmansociology::frequency(chickwts$feed)
 ##  soybean   14   19.7   
 ##  sunflower 12   16.9   
 ##  Total     71   100
+```
+
+```r
+# Variance for a population
+# This is similar to the VARP function in most spreadsheets
+lehmansociology::varp(chickwts$weight)
+```
+
+```
+## [1] 6009.65
+```
+
+```r
+# Standard deviation for a population 
+# This is similar to the STDEVP
+lehmansociology::sdp(chickwts$weight)
+```
+
+```
+## [1] 77.52194
 ```
 
 

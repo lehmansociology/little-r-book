@@ -21,7 +21,7 @@ Means that b is now a data frame with all the data from chickwts.
 This essential function lets you put a set of values into a vector. 
 
 `a <- c(2, 3, 4, 5)`  
-`b <- c("red", "yellow", "blue")`
+`b <- c("red", "yellow", "blue")`  
 `c <- c(TRUE, FALSE, FALSE, TRUE)`  
 
 Now a, b, and c refer to these sets of values.  
@@ -32,8 +32,8 @@ This is not part of the core of R, but it is widely used. It comes from the `mag
 
 `%>%`
 
-The way it works is that everything on the left becomes and input to what is done on the right.  This is supposed 
-to be more like natural writing.  
+The way it works is that everything on the left becomes an input to what is done on the right.  This is supposed 
+to be more like natural writing.  First do this, then do this, then do this.
 
 The code below says: take the chickwts data, group the rows by the feed variable, then get the mean weight for each of
 the feed types.
@@ -46,14 +46,14 @@ chickwts %>% dplyr::group_by(feed) %>% dplyr::summarize( mean=mean(weight))
 
 ```
 ## # A tibble: 6 x 2
-##        feed     mean
-##      <fctr>    <dbl>
-## 1    casein 323.5833
-## 2 horsebean 160.2000
-## 3   linseed 218.7500
-## 4  meatmeal 276.9091
-## 5   soybean 246.4286
-## 6 sunflower 328.9167
+##   feed       mean
+##   <fctr>    <dbl>
+## 1 casein      324
+## 2 horsebean   160
+## 3 linseed     219
+## 4 meatmeal    277
+## 5 soybean     246
+## 6 sunflower   329
 ```
 Not all functions work with piped data.  
 

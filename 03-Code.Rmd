@@ -21,7 +21,7 @@ Means that b is now a data frame with all the data from chickwts.
 This essential function lets you put a set of values into a vector. 
 
 `a <- c(2, 3, 4, 5)`  
-`b <- c("red", "yellow", "blue")`
+`b <- c("red", "yellow", "blue")`  
 `c <- c(TRUE, FALSE, FALSE, TRUE)`  
 
 Now a, b, and c refer to these sets of values.  
@@ -32,8 +32,8 @@ This is not part of the core of R, but it is widely used. It comes from the `mag
 
 `%>%`
 
-The way it works is that everything on the left becomes and input to what is done on the right.  This is supposed 
-to be more like natural writing.  
+The way it works is that everything on the left becomes an input to what is done on the right.  This is supposed 
+to be more like natural writing.  First do this, then do this, then do this.
 
 The code below says: take the chickwts data, group the rows by the feed variable, then get the mean weight for each of
 the feed types.

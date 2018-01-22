@@ -111,11 +111,11 @@ iris %>% dplyr::group_by(Species)  %>% dplyr::summarize(mean_sepal_length = mean
 
 ```
 ## # A tibble: 3 x 5
-##      Species mean_sepal_length median_sepal_legth Upper_CI Lower_CI
-##       <fctr>             <dbl>              <dbl>    <dbl>    <dbl>
-## 1     setosa             5.006                5.0 5.696880 4.315120
-## 2 versicolor             5.936                5.9 6.947695 4.924305
-## 3  virginica             6.588                6.5 7.834324 5.341676
+##   Species    mean_sepal_length median_sepal_legth Upper_CI Lower_CI
+##   <fctr>                 <dbl>              <dbl>    <dbl>    <dbl>
+## 1 setosa                  5.01               5.00     5.70     4.32
+## 2 versicolor              5.94               5.90     6.95     4.92
+## 3 virginica               6.59               6.50     7.83     5.34
 ```
 
 
@@ -130,7 +130,7 @@ iris %>% dplyr::group_by(Species)  %>% skimr::skim()
 ##  group variables: Species 
 ## 
 ## Variable type: numeric 
-##       Species          var missing complete  n mean   sd min  p25 median
+##       Species     variable missing complete  n mean   sd min  p25 median
 ## 1      setosa Petal.Length       0       50 50 1.46 0.17 1   1.4    1.5 
 ## 2      setosa  Petal.Width       0       50 50 0.25 0.11 0.1 0.2    0.2 
 ## 3      setosa Sepal.Length       0       50 50 5.01 0.35 4.3 4.8    5   
