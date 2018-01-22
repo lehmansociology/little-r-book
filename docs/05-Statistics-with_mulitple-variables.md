@@ -102,11 +102,12 @@ ro organiza the results
 
 ```r
 library(magrittr)
-iris %>% dplyr::group_by(Species)  %>% dplyr::summarize(mean_sepal_length = mean(Sepal.Length),
-                                                        median_sepal_legth = median(Sepal.Length),
-                                                        Upper_CI = mean(Sepal.Length) + 1.96*sd(Sepal.Length),
-                                                        Lower_CI = mean(Sepal.Length) - 1.96*sd(Sepal.Length)
-                                                        )
+iris %>% dplyr::group_by(Species)  %>%
+         dplyr::summarize(mean_sepal_length = mean(Sepal.Length),
+                          median_sepal_legth = median(Sepal.Length),
+                          Upper_CI = mean(Sepal.Length) + 1.96*sd(Sepal.Length),
+                          Lower_CI = mean(Sepal.Length) - 1.96*sd(Sepal.Length)
+                          )
 ```
 
 ```
