@@ -2,7 +2,7 @@
 
 In our classes we primarily use the ggplot2 package for graphing.
 
-Remember htat you will need to load the package `library(ggplot2)`. 
+Remember that you will need to load the package `library(ggplot2)`. 
 
 As a package is is very flexible and provides many options that will let you do just about any visualization,
 but this can make it seem complicated when you are starting out learning it.
@@ -26,19 +26,19 @@ library(ggplot2)
 ggplot(iris, aes(x = Sepal.Length)) 
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-1-1.pdf)<!-- --> 
 
 ```r
 ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width))
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-1-2.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-1-2.pdf)<!-- --> 
 
 ```r
 ggplot(iris, aes(x = Species, y = Sepal.Width))
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-1-3.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-1-3.pdf)<!-- --> 
 
 ### Adding geom 
 To add data to the axes you use a "geom" that determines the type of display.  The geom does not modify the
@@ -57,31 +57,31 @@ graph1 + geom_histogram()
 ## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-2-1.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-2-1.pdf)<!-- --> 
 
 ```r
 graph1 + geom_dotplot(binwidth = .1)
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-2-2.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-2-2.pdf)<!-- --> 
 
 ```r
 graph1 + geom_bar()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-2-3.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-2-3.pdf)<!-- --> 
 
 ```r
 graph1 + geom_density()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-2-4.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-2-4.pdf)<!-- --> 
 
 ```r
 graph1 + stat_ecdf(geom = "step")
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-2-5.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-2-5.pdf)<!-- --> 
 
 Our second example uses two interval variables, so has different possibilities than the first. 
 The second one shows one way that geoms can be combined.
@@ -93,7 +93,7 @@ graph2 <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width))
 graph2 + geom_point()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-3-1.pdf)<!-- --> 
 
 ```r
 graph2 + geom_point() + geom_smooth()
@@ -103,14 +103,14 @@ graph2 + geom_point() + geom_smooth()
 ## `geom_smooth()` using method = 'loess'
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-3-2.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-3-2.pdf)<!-- --> 
 
 ```r
 graph2_with_species <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_point()
 graph2_with_species
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-3-3.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-3-3.pdf)<!-- --> 
 
 This data includes two types of data.  The last example shows how multiple geoms can be combined.
 
@@ -121,31 +121,31 @@ graph3 <- ggplot(iris, aes(x = Species, y = Sepal.Width))
 graph3 + geom_point()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-4-1.pdf)<!-- --> 
 
 ```r
 graph3 + geom_count()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-4-2.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-4-2.pdf)<!-- --> 
 
 ```r
 graph3 + geom_jitter()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-4-3.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-4-3.pdf)<!-- --> 
 
 ```r
 graph3 + geom_boxplot()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-4-4.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-4-4.pdf)<!-- --> 
 
 ```r
 graph3 + geom_boxplot() + geom_jitter()
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-4-5.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-4-5.pdf)<!-- --> 
 
 ### Add titles and labels, modify axes
 
@@ -158,7 +158,7 @@ graph3 + geom_jitter() +
         labs(y="Sepal Width", x="Iris Species")  
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-5-1.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-5-1.pdf)<!-- --> 
 
 The way to modify axes is to use `scale_y_continuous` and `scale_x_continuous`.  These are very flexible and 
 have many options. This section will show how to change or improve some of the previous plots.
@@ -170,14 +170,14 @@ graph1 + geom_dotplot(binwidth = .1) +
          scale_y_continuous(NULL, breaks = NULL)
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-6-1.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-6-1.pdf)<!-- --> 
 
 ```r
 # Use the same tick marks on the x axis match those on the y axis
 graph2 + geom_point() + scale_x_continuous( breaks = seq(4, 8, .5), minor_breaks = waiver())
 ```
 
-<img src="06-Graphs_files/figure-html/unnamed-chunk-6-2.png" width="672" />
+![](06-Graphs_files/figure-latex/unnamed-chunk-6-2.pdf)<!-- --> 
 
 
  There are several websites that give detailed examples of more complex ways to create visualizations. 

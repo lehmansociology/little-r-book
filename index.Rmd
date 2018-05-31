@@ -2,7 +2,9 @@
 title: "A Little R Book for Lehman Sociology Students"
 author: "Lehman Sociology"
 date: '`r Sys.Date()`'
-output: pdf_document
+output:
+  html_document: default
+  pdf_document: default
 description: Things you should know or that may help with R
 documentclass: book
 github-repo: lehmansociology/book
@@ -10,9 +12,11 @@ link-citations: yes
 bibliography: book.bib
 site: bookdown::bookdown_site
 biblio-style: apalike
-url: https:\//lehmansociology.github.io/little-r-book/
 ---
-
+```{r echo=FALSE}
+library(knitr)
+opts_chunk$set(comment ='#>')
+```
 # Preface {-}
 
 The ideas is to create a useful book that can be expanded collaboartively

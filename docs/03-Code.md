@@ -47,13 +47,13 @@ chickwts %>% dplyr::group_by(feed) %>% dplyr::summarize( mean=mean(weight))
 ```
 ## # A tibble: 6 x 2
 ##   feed       mean
-##   <fctr>    <dbl>
-## 1 casein      324
-## 2 horsebean   160
-## 3 linseed     219
-## 4 meatmeal    277
-## 5 soybean     246
-## 6 sunflower   329
+##   <fct>     <dbl>
+## 1 casein     324.
+## 2 horsebean  160.
+## 3 linseed    219.
+## 4 meatmeal   277.
+## 5 soybean    246.
+## 6 sunflower  329.
 ```
 Not all functions work with piped data.  
 

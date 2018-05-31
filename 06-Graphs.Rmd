@@ -2,7 +2,7 @@
 
 In our classes we primarily use the ggplot2 package for graphing.
 
-Remember htat you will need to load the package `library(ggplot2)`. 
+Remember that you will need to load the package `library(ggplot2)`. 
 
 As a package is is very flexible and provides many options that will let you do just about any visualization,
 but this can make it seem complicated when you are starting out learning it.

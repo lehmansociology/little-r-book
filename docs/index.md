@@ -1,8 +1,10 @@
 --- 
 title: "A Little R Book for Lehman Sociology Students"
 author: "Lehman Sociology"
-date: '2018-01-22'
-output: pdf_document
+date: '2018-05-30'
+output:
+  html_document: default
+  pdf_document: default
 description: Things you should know or that may help with R
 documentclass: book
 github-repo: lehmansociology/book
@@ -10,7 +12,6 @@ link-citations: yes
 bibliography: book.bib
 site: bookdown::bookdown_site
 biblio-style: apalike
-url: https:\//lehmansociology.github.io/little-r-book/
 ---
 
 # Preface {-}
