@@ -111,6 +111,10 @@ iris %>% dplyr::group_by(Species)  %>%
 ```
 
 ```
+## Warning: package 'bindrcpp' was built under R version 3.4.4
+```
+
+```
 ## # A tibble: 3 x 5
 ##   Species    mean_sepal_length median_sepal_legth Upper_CI Lower_CI
 ##   <fct>                  <dbl>              <dbl>    <dbl>    <dbl>
@@ -124,39 +128,43 @@ iris %>% dplyr::group_by(Species)  %>%
 iris %>% dplyr::group_by(Species)  %>% skimr::skim()
 ```
 
-```
-## Skim summary statistics
-##  n obs: 150 
-##  n variables: 5 
-##  group variables: Species 
-## -- Variable type:numeric -------------------------------------------------------------
-##     Species     variable missing complete  n mean   sd  p0  p25  p50  p75
-##      setosa Petal.Length       0       50 50 1.46 0.17 1   1.4  1.5  1.58
-##      setosa  Petal.Width       0       50 50 0.25 0.11 0.1 0.2  0.2  0.3 
-##      setosa Sepal.Length       0       50 50 5.01 0.35 4.3 4.8  5    5.2 
-##      setosa  Sepal.Width       0       50 50 3.43 0.38 2.3 3.2  3.4  3.68
-##  versicolor Petal.Length       0       50 50 4.26 0.47 3   4    4.35 4.6 
-##  versicolor  Petal.Width       0       50 50 1.33 0.2  1   1.2  1.3  1.5 
-##  versicolor Sepal.Length       0       50 50 5.94 0.52 4.9 5.6  5.9  6.3 
-##  versicolor  Sepal.Width       0       50 50 2.77 0.31 2   2.52 2.8  3   
-##   virginica Petal.Length       0       50 50 5.55 0.55 4.5 5.1  5.55 5.88
-##   virginica  Petal.Width       0       50 50 2.03 0.27 1.4 1.8  2    2.3 
-##   virginica Sepal.Length       0       50 50 6.59 0.64 4.9 6.23 6.5  6.9 
-##   virginica  Sepal.Width       0       50 50 2.97 0.32 2.2 2.8  3    3.18
-##  p100     hist
-##   1.9 ▁▁▅▇▇▅▂▁
-##   0.6 ▂▇▁▂▂▁▁▁
-##   5.8 ▂▃▅▇▇▃▁▂
-##   4.4 ▁▁▃▅▇▃▂▁
-##   5.1 ▁▃▂▆▆▇▇▃
-##   1.8 ▆▃▇▅▆▂▁▁
-##   7   ▃▂▇▇▇▃▅▂
-##   3.4 ▁▂▃▅▃▇▃▁
-##   6.9 ▂▇▃▇▅▂▁▂
-##   2.5 ▂▁▇▃▃▆▅▃
-##   7.9 ▁▁▃▇▅▃▂▃
-##   3.8 ▁▃▇▇▅▃▁▂
-```
+
+**Skim summary statistics**
+
+<table style='width: auto;' class='table table-condensed'>
+ <thead>
+  <tr>
+   <th style="text-align:right;"> n_obs </th>
+   <th style="text-align:right;"> n_cols </th>
+  </tr>
+ </thead>
+<tbody>
+  <tr>
+   <td style="text-align:right;"> 150 </td>
+   <td style="text-align:right;"> 5 </td>
+  </tr>
+</tbody>
+</table>
+
+
+
+
+**Variable type: numeric**
+
+variable       Species       missing   complete    n   mean     sd    p0    p25    p50    p75   p100  hist  
+-------------  -----------  --------  ---------  ---  -----  -----  ----  -----  -----  -----  -----  ------
+Sepal.Length   setosa              0         50   50   5.01   0.35   4.3   4.80   5.00   5.20    5.8  ▃▃▇▅▁ 
+Sepal.Length   versicolor          0         50   50   5.94   0.52   4.9   5.60   5.90   6.30    7.0  ▂▇▆▃▃ 
+Sepal.Length   virginica           0         50   50   6.59   0.64   4.9   6.23   6.50   6.90    7.9  ▁▃▇▃▂ 
+Sepal.Width    setosa              0         50   50   3.43   0.38   2.3   3.20   3.40   3.68    4.4  ▁▃▇▅▂ 
+Sepal.Width    versicolor          0         50   50   2.77   0.31   2.0   2.52   2.80   3.00    3.4  ▁▅▆▇▂ 
+Sepal.Width    virginica           0         50   50   2.97   0.32   2.2   2.80   3.00   3.18    3.8  ▂▆▇▅▁ 
+Petal.Length   setosa              0         50   50   1.46   0.17   1.0   1.40   1.50   1.58    1.9  ▁▃▇▃▁ 
+Petal.Length   versicolor          0         50   50   4.26   0.47   3.0   4.00   4.35   4.60    5.1  ▂▂▇▇▆ 
+Petal.Length   virginica           0         50   50   5.55   0.55   4.5   5.10   5.55   5.88    6.9  ▃▇▇▃▂ 
+Petal.Width    setosa              0         50   50   0.25   0.11   0.1   0.20   0.20   0.30    0.6  ▇▂▂▁▁ 
+Petal.Width    versicolor          0         50   50   1.33   0.20   1.0   1.20   1.30   1.50    1.8  ▅▇▃▆▁ 
+Petal.Width    virginica           0         50   50   2.03   0.27   1.4   1.80   2.00   2.30    2.5  ▂▇▆▅▇ 
 
 
 

@@ -95,4 +95,73 @@ lehmansociology::varp(chickwts$weight)
 lehmansociology::sdp(chickwts$weight)
 ```
 
+## These are from the Janitor package
+
+Since it is a package you must load it.
+For producing single variable frequencies use tabyl().
+It is usually used with the `%>%` or "pipe" operator from the maggritr  package. 
+
+```{r message=FALSE}
+library(janitor)
+library(magrittr)
+chickwts %>% tabyl(feed)
+
+```
+
+Janitor uses adorn_ functions to add extra details or formatting to tables. 
+```{r}
+chickwts %>% tabyl(feed) %>% 
+             adorn_pct_formatting()
+```
+
+The lehmansociology package includes extra adorn_ functions for cumulative distributions.
+
+```{r message=FALSE}
+library(lehmansociology)
+chickwts %>% tabyl(weight)  %>%
+            adorn_cumulative() %>%
+            adorn_cumulative_percentages() 
+```
+You can add adorn_cum_pct_formatting to put the proportions into percent format.
+
+```{r}
+chickwts %>% tabyl(weight)  %>%
+            adorn_pct_formatting() %>%
+            adorn_cumulative() %>%
+            adorn_cumulative_percentages() %>%
+            adorn_cum_pct_formatting()
+```
+
+To do a cross tab (also known as two-way table or contingency table) we also use `table()`. The basic function
+just gives counts for each combination.
+
+```{r}
+mtcars %>% tabyl(cyl, gear)
+```
+
+```{r}
+mtcars %>% tabyl(cyl, gear)
+```
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_title()
+```
+
+You can include both numbers and percentages.
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_ns %>%
+      adorn_title()
+```
+
+## Conclusion
+
+This chapter presents just a handful of R functions and their many options As you gain experience using
+R you should read the help files, vignettes and online resources to learn more.
 

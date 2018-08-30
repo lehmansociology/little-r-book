@@ -13,20 +13,25 @@ Ggplot constructs a graph by building it up piece by piece, with the parts conne
 
 ### ggplot()
 
-A ggplot always starts with the `ggplot()` function.  For beginners, the important thing to know is that this
-function sets up the axes for your plot.  To do this you n provide the name of the data set
-and the name of the x variable and the y variable (if needed). Notice how the three axes below differ
-depending on how many variables there are and what kind of variable they are.  The variable information
-goes inside the `aes()` which is short for aesthetics.  
+A ggplot always starts with the `ggplot()` function.  This provides the name of the data set and 
+sets up the background of your graph. 
+Next one or more `aes()` functions define the x variable and the y variable (if needed). Notice how the three axes below differ depending on how many variables there are and what kind of variable they are.  The `aes()` which is short for aesthetics.  
 
 ```{r}
 library(ggplot2)
 
-ggplot(iris, aes(x = Sepal.Length)) 
+ggplot(iris)
 
-ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width))
+ggplot(iris) +
+  aes(x = Sepal.Length)
 
-ggplot(iris, aes(x = Species, y = Sepal.Width))
+ggplot(iris) +
+  aes(x = Sepal.Length) +
+  aes(y = Sepal.Width)
+
+ggplot(iris) +
+   aes(x = Species) +
+   aes( y = Sepal.Width)
 ```
 
 ### Adding geom 
@@ -37,7 +42,8 @@ Our first example is only for one variable.  Often, you will want to add options
 The last example shows how to use a slightly different approach to graph the cumulative distribution (ecdf).
 
 ```{r}
-graph1 <- ggplot(iris, aes(x = Sepal.Length))  
+graph1 <- ggplot(iris) +
+             aes(x = Sepal.Length)
 graph1 + geom_histogram()
 graph1 + geom_dotplot(binwidth = .1)
 graph1 + geom_bar()
@@ -49,19 +55,27 @@ Our second example uses two interval variables, so has different possibilities t
 The second one shows one way that geoms can be combined.
 
 ```{r}
-graph2 <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width))
+graph2 <- ggplot(iris) + 
+            aes(x = Sepal.Length) +
+            aes(y = Sepal.Width)
 
 graph2 + geom_point()
 graph2 + geom_point() + geom_smooth()
 
-graph2_with_species <- ggplot(iris, aes(x = Sepal.Length, y = Sepal.Width, color = Species)) + geom_point()
+graph2_with_species <- ggplot(iris) + 
+                           aes(x = Sepal.Length) +
+                           aes(y = Sepal.Width) +
+                           aes(color = Species) +
+                           geom_point()
 graph2_with_species
 ```
 
 This data includes two types of data.  The last example shows how multiple geoms can be combined.
 
 ```{r}
-graph3 <- ggplot(iris, aes(x = Species, y = Sepal.Width))
+graph3 <- ggplot(iris) +
+           aes(x = Species) +
+           aes(y = Sepal.Width)   
 
 graph3 + geom_point()
 graph3 + geom_count()
