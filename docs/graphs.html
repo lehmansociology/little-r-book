@@ -25,7 +25,7 @@
 <meta name="author" content="Lehman Sociology">
 
 
-<meta name="date" content="2018-05-30">
+<meta name="date" content="2018-08-30">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -108,6 +108,8 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html"><i class="fa fa-check"></i><b>2</b> Statistical Functions (for one variable)</a><ul>
 <li class="chapter" data-level="2.1" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-core-r"><i class="fa fa-check"></i><b>2.1</b> These are from core R</a></li>
 <li class="chapter" data-level="2.2" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-lehmansociology"><i class="fa fa-check"></i><b>2.2</b> These are from lehmansociology</a></li>
+<li class="chapter" data-level="2.3" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-the-janitor-package"><i class="fa fa-check"></i><b>2.3</b> These are from the Janitor package</a></li>
+<li class="chapter" data-level="2.4" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#conclusion"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code</a><ul>
 <li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#assignment-operator"><i class="fa fa-check"></i><b>3.1</b> Assignment operator</a></li>
@@ -170,21 +172,29 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <p>Ggplot constructs a graph by building it up piece by piece, with the parts connected with <code>+</code> signs.</p>
 <div id="ggplot" class="section level3">
 <h3><span class="header-section-number">6.1.1</span> ggplot()</h3>
-<p>A ggplot always starts with the <code>ggplot()</code> function. For beginners, the important thing to know is that this function sets up the axes for your plot. To do this you n provide the name of the data set and the name of the x variable and the y variable (if needed). Notice how the three axes below differ depending on how many variables there are and what kind of variable they are. The variable information goes inside the <code>aes()</code> which is short for aesthetics.</p>
+<p>A ggplot always starts with the <code>ggplot()</code> function. This provides the name of the data set and sets up the background of your graph. Next one or more <code>aes()</code> functions define the x variable and the y variable (if needed). Notice how the three axes below differ depending on how many variables there are and what kind of variable they are. The <code>aes()</code> which is short for aesthetics.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
 
-<span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length)) </code></pre></div>
+<span class="kw">ggplot</span>(iris)</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris) <span class="op">+</span>
+<span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length)</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Sepal.Width))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris) <span class="op">+</span>
+<span class="st">  </span><span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length) <span class="op">+</span>
+<span class="st">  </span><span class="kw">aes</span>(<span class="dt">y =</span> Sepal.Width)</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">ggplot</span>(iris) <span class="op">+</span>
+<span class="st">   </span><span class="kw">aes</span>(<span class="dt">x =</span> Species) <span class="op">+</span>
+<span class="st">   </span><span class="kw">aes</span>( <span class="dt">y =</span> Sepal.Width)</code></pre></div>
+<p><img src="06-Graphs_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
 </div>
 <div id="adding-geom" class="section level3">
 <h3><span class="header-section-number">6.1.2</span> Adding geom</h3>
 <p>To add data to the axes you use a “geom” that determines the type of display. The geom does not modify the axis, it adds data to it. To show this, let’s save the ggplot information and add to it.</p>
 <p>Our first example is only for one variable. Often, you will want to add options such as binwidth. The last example shows how to use a slightly different approach to graph the cumulative distribution (ecdf).</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length))  
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph1 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris) <span class="op">+</span>
+<span class="st">             </span><span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length)
 graph1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_histogram</span>()</code></pre></div>
 <pre><code>## `stat_bin()` using `bins = 30`. Pick better value with `binwidth`.</code></pre>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
@@ -197,18 +207,26 @@ graph1 <span class="op">+</span><span class="st"> </span><span class="kw">geom_h
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph1 <span class="op">+</span><span class="st"> </span><span class="kw">stat_ecdf</span>(<span class="dt">geom =</span> <span class="st">&quot;step&quot;</span>)</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-2-5.png" width="672" /></p>
 <p>Our second example uses two interval variables, so has different possibilities than the first. The second one shows one way that geoms can be combined.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph2 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris) <span class="op">+</span><span class="st"> </span>
+<span class="st">            </span><span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length) <span class="op">+</span>
+<span class="st">            </span><span class="kw">aes</span>(<span class="dt">y =</span> Sepal.Width)
 
 graph2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph2 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>() <span class="op">+</span><span class="st"> </span><span class="kw">geom_smooth</span>()</code></pre></div>
 <pre><code>## `geom_smooth()` using method = &#39;loess&#39;</code></pre>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph2_with_species &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length, <span class="dt">y =</span> Sepal.Width, <span class="dt">color =</span> Species)) <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph2_with_species &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris) <span class="op">+</span><span class="st"> </span>
+<span class="st">                           </span><span class="kw">aes</span>(<span class="dt">x =</span> Sepal.Length) <span class="op">+</span>
+<span class="st">                           </span><span class="kw">aes</span>(<span class="dt">y =</span> Sepal.Width) <span class="op">+</span>
+<span class="st">                           </span><span class="kw">aes</span>(<span class="dt">color =</span> Species) <span class="op">+</span>
+<span class="st">                           </span><span class="kw">geom_point</span>()
 graph2_with_species</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
 <p>This data includes two types of data. The last example shows how multiple geoms can be combined.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris, <span class="kw">aes</span>(<span class="dt">x =</span> Species, <span class="dt">y =</span> Sepal.Width))
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">graph3 &lt;-<span class="st"> </span><span class="kw">ggplot</span>(iris) <span class="op">+</span>
+<span class="st">           </span><span class="kw">aes</span>(<span class="dt">x =</span> Species) <span class="op">+</span>
+<span class="st">           </span><span class="kw">aes</span>(<span class="dt">y =</span> Sepal.Width)   
 
 graph3 <span class="op">+</span><span class="st"> </span><span class="kw">geom_point</span>()</code></pre></div>
 <p><img src="06-Graphs_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
