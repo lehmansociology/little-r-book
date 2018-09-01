@@ -4,6 +4,73 @@ Most of the time we want to look at the relationship between two or more variabl
 
 R has several different ways of working with multiple variables. 
 
+## Entry of variables
+
+Many R functions for multiple variables simply require that you enter the names of variables
+in the correct order. Sometimes the names will need to be in quotation marks `"name"` and sometimes not.
+
+### Cross tabs
+
+To do a cross tab (also known as two-way table or contingency table) we also use `tabyl()`. The basic function
+just gives counts for each combination. The first variable defines the rows and the second variable defines the
+columns.
+
+```{r}
+library(magrittr)
+library(janitor)
+mtcars %>% tabyl(cyl, gear)
+```
+
+Piping to `adorn_title() will add the name of the second variable.
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+           adorn_title()
+```
+
+To change to proportions use the `adorn_percentages()` functions.  In sociology we use the independent 
+variable for the columns and the dependent variable for the rows. Therefore we use the column total for
+the denominator `adorn_percentages(denominator = "col")`.  Sometimes you might want to calculate row or total
+percents, in which case the denominator would be "row" or "all". 
+
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_title()
+```
+To change the formatting to percentages pipe to the `adorn_pct_formatting()` function.
+
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_ns %>%
+      adorn_title()
+```
+
+You can also display both the numbers and the percentages.
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_ns %>%
+      adorn_title()
+```
+Adding a third variable will create separate tables for level of that variable.
+
+```{r}
+mtcars %>% tabyl(cyl, gear, am) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_title()
+```
+
+
+You can also pipe to the `knitr::kable()` function to get a more polished table (see Chapter 2)
+
 ## Using formula notation
 
 In R a "forumula" is created using the `~`  operator, which is found on the top left of the keyboard. 
@@ -12,19 +79,30 @@ In these examples the formula operator always works like this:
 `dependent_variable ~ independent_variable` 
 and if you have multiple independent_variables use a `+` to add them on the right.
 
-*Crosstab using lehmansociology*
 ```{r}
-lehmansociology::crosstab(tension ~ wool, data = warpbreaks)
+library(Rmisc)
+group.CI(weight ~ feed, 
+         data = chickwts, ci = .90) 
 ```
 
-*Ordinary Linear Model*  
+You can also use the formula notation for a model with no independent variable by substituting a constant on
+the right side.
+
+```{r}
+group.CI(weight ~ 1, 
+         data = chickwts, ci = .90) 
+```
+
+
+### Ordinary Linear Model  
 (This means it has an interval dependent variable.)
+This works in the same way as group.CI, dependent variable on the left, independent on the right.
 
 ```{r}
 lm(raises ~ critical, data = attitude)
 ```
 
-*Generalized Linear Model*
+### Generalized Linear Model
 (In this case a logistic regression.)  
 (in this code a dichtomous dependent variable is created using the cut() functions.)  
 
@@ -33,8 +111,7 @@ USJudgeRatings$RTEN_d <- cut(USJudgeRatings$RTEN, median(USJudgeRatings$RTEN))
 
 glm(RTEN_d ~ INTG, data = USJudgeRatings, family = binomial())
 ```
-
-*Parametric t test*
+### Parametric t test
 ```{r}
 t.test(extra ~ group, data = sleep)
 ```
@@ -43,11 +120,12 @@ t.test(extra ~ group, data = sleep)
 
 ## Using group_by 
 
-Another way to look at the relationship between variables is to compare values of statistics for different groups.  In this case
-one way to do this is with the group_by function from the `dplyr` package. 
+Another way to look at the relationship between variables is to compare values of statistics for different groups.  
 
-Once you group your data there are a number of other functions within dplyr and in other packages that will use the groups
-ro organiza the results
+In this case one way to do this is with the group_by function from the `dplyr` package. 
+
+Once you group your data there are a number of other functions within dplyr and in other packages that will use the 
+groups to organize the results
 
 ```{r}
 library(magrittr)

@@ -82,10 +82,6 @@ Since that is a package you either need to load it with library() or use the not
 # completely unrelated.
 lehmansociology::MODE(chickwts$feed)
 
-
-# frequency
-lehmansociology::frequency(chickwts$feed)
-
 # Variance for a population
 # This is similar to the VARP function in most spreadsheets
 lehmansociology::varp(chickwts$weight)
@@ -132,33 +128,55 @@ chickwts %>% tabyl(weight)  %>%
             adorn_cum_pct_formatting()
 ```
 
-To do a cross tab (also known as two-way table or contingency table) we also use `table()`. The basic function
-just gives counts for each combination.
+Piping to the `knitr::kable()` function will create a more polished table, In additon if knit to PDF 
+`kable()` can add a title using the `caption=` option.
 
 ```{r}
-mtcars %>% tabyl(cyl, gear)
+chickwts %>% tabyl(weight)  %>%
+            adorn_pct_formatting() %>%
+            adorn_cumulative() %>%
+            adorn_cumulative_percentages() %>%
+            adorn_cum_pct_formatting() %>%
+            knitr::kable(caption = "Weights of chicks")
 ```
+
+
+Janitor is also used to create cross tabs (see Chapter 5).
+
+## From the RMisc package (Confidence intervals)
+
+You can use the `CI()` function from the Rmisc package to obtain confidence intervals.
 
 ```{r}
-mtcars %>% tabyl(cyl, gear)
+library(Rmisc)
+CI(chickwts$weight, ci = 0.95)
 ```
+
+## From the resample package (bootstrap confidence intervals)
+
+Obtaining bootstrap confidence intervals for a single mean would build on the `bootstrap()` function from the 
+resample library.  It takes two steps. First obtaining a large  number of samples from your sample.  You also
+have to specify what statistic you want to estimate the confidence interval for. This can be anything
+(`mean()`, `median()`, `sd()` or even a function you create).  You can also specify the 
+number of replications; with today's computer power there is no reason to use a low number unless you have
+a huge (100,000s) sample size.
+
+Save the result in an object and then use the `CI.bca()` function to obtain the level of confidence interval you
+want. There are also other CI methods available.
+```{r echo=FALSE}
+is <- methods:::is
+Quote <- methods:::Quote
+```
+
 
 ```{r}
-mtcars %>% tabyl(cyl, gear) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_pct_formatting() %>%
-      adorn_title()
+library(resample)
+bootstrap_results  <- bootstrap(chickwts, mean(weight, na.rm = TRUE), R = 10000)
+CI.bca(bootstrap_results, probs = c(0.025, 0.975))
 ```
 
-You can include both numbers and percentages.
 
-```{r}
-mtcars %>% tabyl(cyl, gear) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_pct_formatting() %>%
-      adorn_ns %>%
-      adorn_title()
-```
+
 
 ## Conclusion
 

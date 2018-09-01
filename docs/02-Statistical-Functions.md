@@ -168,22 +168,6 @@ lehmansociology::MODE(chickwts$feed)
 ```
 
 ```r
-# frequency
-lehmansociology::frequency(chickwts$feed)
-```
-
-```
-##  Values    Freq Percent
-##  casein    12   16.9   
-##  horsebean 10   14.1   
-##  linseed   12   16.9   
-##  meatmeal  11   15.5   
-##  soybean   14   19.7   
-##  sunflower 12   16.9   
-##  Total     71   100
-```
-
-```r
 # Variance for a population
 # This is similar to the VARP function in most spreadsheets
 lehmansociology::varp(chickwts$weight)
@@ -416,67 +400,150 @@ chickwts %>% tabyl(weight)  %>%
 ## 67  Total 71       -       71    100.0%
 ```
 
-To do a cross tab (also known as two-way table or contingency table) we also use `table()`. The basic function
-just gives counts for each combination.
+Piping to the `knitr::kable()` function will create a more polished table, In additon if knit to PDF 
+`kable()` can add a title using the `caption=` option.
 
 
 ```r
-mtcars %>% tabyl(cyl, gear)
+chickwts %>% tabyl(weight)  %>%
+            adorn_pct_formatting() %>%
+            adorn_cumulative() %>%
+            adorn_cumulative_percentages() %>%
+            adorn_cum_pct_formatting() %>%
+            knitr::kable(caption = "Weights of chicks")
 ```
 
-```
-##  cyl  3 4 5
-##    4  1 8 2
-##    6  2 4 1
-##    8 12 0 2
-```
+
+
+Table: (\#tab:unnamed-chunk-10)Weights of chicks
+
+weight     n  percent    cum freq  cum pct   
+-------  ---  --------  ---------  ----------
+108        1  1.4%              1  1.408451% 
+124        1  1.4%              2  2.8%      
+136        1  1.4%              3  4.2%      
+140        1  1.4%              4  5.6%      
+141        1  1.4%              5  7.0%      
+143        1  1.4%              6  8.5%      
+148        1  1.4%              7  9.9%      
+153        1  1.4%              8  11.3%     
+158        1  1.4%              9  12.7%     
+160        1  1.4%             10  14.1%     
+168        1  1.4%             11  15.5%     
+169        1  1.4%             12  16.9%     
+171        1  1.4%             13  18.3%     
+179        1  1.4%             14  19.7%     
+181        1  1.4%             15  21.1%     
+193        1  1.4%             16  22.5%     
+199        1  1.4%             17  23.9%     
+203        1  1.4%             18  25.4%     
+206        1  1.4%             19  26.8%     
+213        1  1.4%             20  28.2%     
+216        1  1.4%             21  29.6%     
+217        1  1.4%             22  31.0%     
+222        1  1.4%             23  32.4%     
+226        1  1.4%             24  33.8%     
+227        1  1.4%             25  35.2%     
+229        1  1.4%             26  36.6%     
+230        1  1.4%             27  38.0%     
+242        1  1.4%             28  39.4%     
+243        1  1.4%             29  40.8%     
+244        1  1.4%             30  42.3%     
+248        2  2.8%             32  45.1%     
+250        1  1.4%             33  46.5%     
+257        2  2.8%             35  49.3%     
+258        1  1.4%             36  50.7%     
+260        2  2.8%             38  53.5%     
+263        1  1.4%             39  54.9%     
+267        1  1.4%             40  56.3%     
+271        2  2.8%             42  59.2%     
+283        1  1.4%             43  60.6%     
+295        1  1.4%             44  62.0%     
+297        1  1.4%             45  63.4%     
+303        1  1.4%             46  64.8%     
+309        1  1.4%             47  66.2%     
+315        1  1.4%             48  67.6%     
+316        1  1.4%             49  69.0%     
+318        2  2.8%             51  71.8%     
+320        1  1.4%             52  73.2%     
+322        1  1.4%             53  74.6%     
+325        1  1.4%             54  76.1%     
+327        1  1.4%             55  77.5%     
+329        1  1.4%             56  78.9%     
+332        1  1.4%             57  80.3%     
+334        1  1.4%             58  81.7%     
+339        1  1.4%             59  83.1%     
+340        1  1.4%             60  84.5%     
+341        1  1.4%             61  85.9%     
+344        1  1.4%             62  87.3%     
+352        1  1.4%             63  88.7%     
+359        1  1.4%             64  90.1%     
+368        1  1.4%             65  91.5%     
+379        1  1.4%             66  93.0%     
+380        1  1.4%             67  94.4%     
+390        1  1.4%             68  95.8%     
+392        1  1.4%             69  97.2%     
+404        1  1.4%             70  98.6%     
+423        1  1.4%             71  100.0%    
+Total     71  -                71  100.0%    
+
+
+Janitor is also used to create cross tabs (see Chapter 5).
+
+## From the RMisc package (Confidence intervals)
+
+You can use the `CI()` function from the Rmisc package to obtain confidence intervals.
 
 
 ```r
-mtcars %>% tabyl(cyl, gear)
+library(Rmisc)
 ```
 
 ```
-##  cyl  3 4 5
-##    4  1 8 2
-##    6  2 4 1
-##    8 12 0 2
+## Loading required package: lattice
 ```
+
+```
+## Loading required package: plyr
+```
+
+```r
+CI(chickwts$weight, ci = 0.95)
+```
+
+```
+##    upper     mean    lower 
+## 279.7896 261.3099 242.8301
+```
+
+## From the resample package (bootstrap confidence intervals)
+
+Obtaining bootstrap confidence intervals for a single mean would build on the `bootstrap()` function from the 
+resample library.  It takes two steps. First obtaining a large  number of samples from your sample.  You also
+have to specify what statistic you want to estimate the confidence interval for. This can be anything
+(`mean()`, `median()`, `sd()` or even a function you create).  You can also specify the 
+number of replications; with today's computer power there is no reason to use a low number unless you have
+a huge (100,000s) sample size.
+
+Save the result in an object and then use the `CI.bca()` function to obtain the level of confidence interval you
+want. There are also other CI methods available.
+
+
 
 
 ```r
-mtcars %>% tabyl(cyl, gear) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_pct_formatting() %>%
-      adorn_title()
+library(resample)
+bootstrap_results  <- bootstrap(chickwts, mean(weight, na.rm = TRUE), R = 10000)
+CI.bca(bootstrap_results, probs = c(0.025, 0.975))
 ```
 
 ```
-##       gear            
-##  cyl     3     4     5
-##    4  6.7% 66.7% 40.0%
-##    6 13.3% 33.3% 20.0%
-##    8 80.0%  0.0% 40.0%
+##                                2.5%    97.5%
+## mean(weight, na.rm = TRUE) 243.0763 279.7887
 ```
 
-You can include both numbers and percentages.
 
 
-```r
-mtcars %>% tabyl(cyl, gear) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_pct_formatting() %>%
-      adorn_ns %>%
-      adorn_title()
-```
-
-```
-##            gear                    
-##  cyl          3         4         5
-##    4  6.7%  (1) 66.7% (8) 40.0% (2)
-##    6 13.3%  (2) 33.3% (4) 20.0% (1)
-##    8 80.0% (12)  0.0% (0) 40.0% (2)
-```
 
 ## Conclusion
 

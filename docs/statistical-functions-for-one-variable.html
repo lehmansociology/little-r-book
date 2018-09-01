@@ -25,7 +25,7 @@
 <meta name="author" content="Lehman Sociology">
 
 
-<meta name="date" content="2018-08-30">
+<meta name="date" content="2018-09-01">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -109,7 +109,9 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="2.1" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-core-r"><i class="fa fa-check"></i><b>2.1</b> These are from core R</a></li>
 <li class="chapter" data-level="2.2" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-lehmansociology"><i class="fa fa-check"></i><b>2.2</b> These are from lehmansociology</a></li>
 <li class="chapter" data-level="2.3" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#these-are-from-the-janitor-package"><i class="fa fa-check"></i><b>2.3</b> These are from the Janitor package</a></li>
-<li class="chapter" data-level="2.4" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#conclusion"><i class="fa fa-check"></i><b>2.4</b> Conclusion</a></li>
+<li class="chapter" data-level="2.4" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#from-the-rmisc-package-confidence-intervals"><i class="fa fa-check"></i><b>2.4</b> From the RMisc package (Confidence intervals)</a></li>
+<li class="chapter" data-level="2.5" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#from-the-resample-package-bootstrap-confidence-intervals"><i class="fa fa-check"></i><b>2.5</b> From the resample package (bootstrap confidence intervals)</a></li>
+<li class="chapter" data-level="2.6" data-path="statistical-functions-for-one-variable.html"><a href="statistical-functions-for-one-variable.html#conclusion"><i class="fa fa-check"></i><b>2.6</b> Conclusion</a></li>
 </ul></li>
 <li class="chapter" data-level="3" data-path="code.html"><a href="code.html"><i class="fa fa-check"></i><b>3</b> Code</a><ul>
 <li class="chapter" data-level="3.1" data-path="code.html"><a href="code.html#assignment-operator"><i class="fa fa-check"></i><b>3.1</b> Assignment operator</a></li>
@@ -126,8 +128,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="errors.html"><a href="errors.html#other-problems-when-knittng"><i class="fa fa-check"></i><b>4.4</b> Other problems when knittng</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html"><i class="fa fa-check"></i><b>5</b> Statistics for Multiple Variables</a><ul>
-<li class="chapter" data-level="5.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-formula-notation"><i class="fa fa-check"></i><b>5.1</b> Using formula notation</a></li>
-<li class="chapter" data-level="5.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-group_by"><i class="fa fa-check"></i><b>5.2</b> Using group_by</a></li>
+<li class="chapter" data-level="5.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#entry-of-variables"><i class="fa fa-check"></i><b>5.1</b> Entry of variables</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#cross-tabs"><i class="fa fa-check"></i><b>5.1.1</b> Cross tabs</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-formula-notation"><i class="fa fa-check"></i><b>5.2</b> Using formula notation</a><ul>
+<li class="chapter" data-level="5.2.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#ordinary-linear-model"><i class="fa fa-check"></i><b>5.2.1</b> Ordinary Linear Model</a></li>
+<li class="chapter" data-level="5.2.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#generalized-linear-model"><i class="fa fa-check"></i><b>5.2.2</b> Generalized Linear Model</a></li>
+<li class="chapter" data-level="5.2.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#parametric-t-test"><i class="fa fa-check"></i><b>5.2.3</b> Parametric t test</a></li>
+</ul></li>
+<li class="chapter" data-level="5.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-group_by"><i class="fa fa-check"></i><b>5.3</b> Using group_by</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>6</b> Graphs</a><ul>
 <li class="chapter" data-level="6.1" data-path="graphs.html"><a href="graphs.html#how-ggplot-works"><i class="fa fa-check"></i><b>6.1</b> How ggplot works</a><ul>
@@ -236,16 +245,6 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 lehmansociology<span class="op">::</span><span class="kw">MODE</span>(chickwts<span class="op">$</span>feed)</code></pre></div>
 <pre><code>## $dataframe
 ## [1] &quot;soybean&quot;</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># frequency</span>
-lehmansociology<span class="op">::</span><span class="kw">frequency</span>(chickwts<span class="op">$</span>feed)</code></pre></div>
-<pre><code>##  Values    Freq Percent
-##  casein    12   16.9   
-##  horsebean 10   14.1   
-##  linseed   12   16.9   
-##  meatmeal  11   15.5   
-##  soybean   14   19.7   
-##  sunflower 12   16.9   
-##  Total     71   100</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Variance for a population</span>
 <span class="co"># This is similar to the VARP function in most spreadsheets</span>
 lehmansociology<span class="op">::</span><span class="kw">varp</span>(chickwts<span class="op">$</span>weight)</code></pre></div>
@@ -427,40 +426,520 @@ chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"
 ## 65    404  1    1.4%       70     98.6%
 ## 66    423  1    1.4%       71    100.0%
 ## 67  Total 71       -       71    100.0%</code></pre>
-<p>To do a cross tab (also known as two-way table or contingency table) we also use <code>table()</code>. The basic function just gives counts for each combination.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear)</code></pre></div>
-<pre><code>##  cyl  3 4 5
-##    4  1 8 2
-##    6  2 4 1
-##    8 12 0 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear)</code></pre></div>
-<pre><code>##  cyl  3 4 5
-##    4  1 8 2
-##    6  2 4 1
-##    8 12 0 2</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
-<pre><code>##       gear            
-##  cyl     3     4     5
-##    4  6.7% 66.7% 40.0%
-##    6 13.3% 33.3% 20.0%
-##    8 80.0%  0.0% 40.0%</code></pre>
-<p>You can include both numbers and percentages.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span>adorn_ns <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
-<pre><code>##            gear                    
-##  cyl          3         4         5
-##    4  6.7%  (1) 66.7% (8) 40.0% (2)
-##    6 13.3%  (2) 33.3% (4) 20.0% (1)
-##    8 80.0% (12)  0.0% (0) 40.0% (2)</code></pre>
+<p>Piping to the <code>knitr::kable()</code> function will create a more polished table, In additon if knit to PDF <code>kable()</code> can add a title using the <code>caption=</code> option.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(weight)  <span class="op">%&gt;%</span>
+<span class="st">            </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
+<span class="st">            </span><span class="kw">adorn_cumulative</span>() <span class="op">%&gt;%</span>
+<span class="st">            </span><span class="kw">adorn_cumulative_percentages</span>() <span class="op">%&gt;%</span>
+<span class="st">            </span><span class="kw">adorn_cum_pct_formatting</span>() <span class="op">%&gt;%</span>
+<span class="st">            </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Weights of chicks&quot;</span>)</code></pre></div>
+<table>
+<caption><span id="tab:unnamed-chunk-10">Table 2.1: </span>Weights of chicks</caption>
+<thead>
+<tr class="header">
+<th align="left">weight</th>
+<th align="right">n</th>
+<th align="left">percent</th>
+<th align="right">cum freq</th>
+<th align="left">cum pct</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">108</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">1</td>
+<td align="left">1.408451%</td>
+</tr>
+<tr class="even">
+<td align="left">124</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">2</td>
+<td align="left">2.8%</td>
+</tr>
+<tr class="odd">
+<td align="left">136</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">3</td>
+<td align="left">4.2%</td>
+</tr>
+<tr class="even">
+<td align="left">140</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">4</td>
+<td align="left">5.6%</td>
+</tr>
+<tr class="odd">
+<td align="left">141</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">5</td>
+<td align="left">7.0%</td>
+</tr>
+<tr class="even">
+<td align="left">143</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">6</td>
+<td align="left">8.5%</td>
+</tr>
+<tr class="odd">
+<td align="left">148</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">7</td>
+<td align="left">9.9%</td>
+</tr>
+<tr class="even">
+<td align="left">153</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">8</td>
+<td align="left">11.3%</td>
+</tr>
+<tr class="odd">
+<td align="left">158</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">9</td>
+<td align="left">12.7%</td>
+</tr>
+<tr class="even">
+<td align="left">160</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">10</td>
+<td align="left">14.1%</td>
+</tr>
+<tr class="odd">
+<td align="left">168</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">11</td>
+<td align="left">15.5%</td>
+</tr>
+<tr class="even">
+<td align="left">169</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">12</td>
+<td align="left">16.9%</td>
+</tr>
+<tr class="odd">
+<td align="left">171</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">13</td>
+<td align="left">18.3%</td>
+</tr>
+<tr class="even">
+<td align="left">179</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">14</td>
+<td align="left">19.7%</td>
+</tr>
+<tr class="odd">
+<td align="left">181</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">15</td>
+<td align="left">21.1%</td>
+</tr>
+<tr class="even">
+<td align="left">193</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">16</td>
+<td align="left">22.5%</td>
+</tr>
+<tr class="odd">
+<td align="left">199</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">17</td>
+<td align="left">23.9%</td>
+</tr>
+<tr class="even">
+<td align="left">203</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">18</td>
+<td align="left">25.4%</td>
+</tr>
+<tr class="odd">
+<td align="left">206</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">19</td>
+<td align="left">26.8%</td>
+</tr>
+<tr class="even">
+<td align="left">213</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">20</td>
+<td align="left">28.2%</td>
+</tr>
+<tr class="odd">
+<td align="left">216</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">21</td>
+<td align="left">29.6%</td>
+</tr>
+<tr class="even">
+<td align="left">217</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">22</td>
+<td align="left">31.0%</td>
+</tr>
+<tr class="odd">
+<td align="left">222</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">23</td>
+<td align="left">32.4%</td>
+</tr>
+<tr class="even">
+<td align="left">226</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">24</td>
+<td align="left">33.8%</td>
+</tr>
+<tr class="odd">
+<td align="left">227</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">25</td>
+<td align="left">35.2%</td>
+</tr>
+<tr class="even">
+<td align="left">229</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">26</td>
+<td align="left">36.6%</td>
+</tr>
+<tr class="odd">
+<td align="left">230</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">27</td>
+<td align="left">38.0%</td>
+</tr>
+<tr class="even">
+<td align="left">242</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">28</td>
+<td align="left">39.4%</td>
+</tr>
+<tr class="odd">
+<td align="left">243</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">29</td>
+<td align="left">40.8%</td>
+</tr>
+<tr class="even">
+<td align="left">244</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">30</td>
+<td align="left">42.3%</td>
+</tr>
+<tr class="odd">
+<td align="left">248</td>
+<td align="right">2</td>
+<td align="left">2.8%</td>
+<td align="right">32</td>
+<td align="left">45.1%</td>
+</tr>
+<tr class="even">
+<td align="left">250</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">33</td>
+<td align="left">46.5%</td>
+</tr>
+<tr class="odd">
+<td align="left">257</td>
+<td align="right">2</td>
+<td align="left">2.8%</td>
+<td align="right">35</td>
+<td align="left">49.3%</td>
+</tr>
+<tr class="even">
+<td align="left">258</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">36</td>
+<td align="left">50.7%</td>
+</tr>
+<tr class="odd">
+<td align="left">260</td>
+<td align="right">2</td>
+<td align="left">2.8%</td>
+<td align="right">38</td>
+<td align="left">53.5%</td>
+</tr>
+<tr class="even">
+<td align="left">263</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">39</td>
+<td align="left">54.9%</td>
+</tr>
+<tr class="odd">
+<td align="left">267</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">40</td>
+<td align="left">56.3%</td>
+</tr>
+<tr class="even">
+<td align="left">271</td>
+<td align="right">2</td>
+<td align="left">2.8%</td>
+<td align="right">42</td>
+<td align="left">59.2%</td>
+</tr>
+<tr class="odd">
+<td align="left">283</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">43</td>
+<td align="left">60.6%</td>
+</tr>
+<tr class="even">
+<td align="left">295</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">44</td>
+<td align="left">62.0%</td>
+</tr>
+<tr class="odd">
+<td align="left">297</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">45</td>
+<td align="left">63.4%</td>
+</tr>
+<tr class="even">
+<td align="left">303</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">46</td>
+<td align="left">64.8%</td>
+</tr>
+<tr class="odd">
+<td align="left">309</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">47</td>
+<td align="left">66.2%</td>
+</tr>
+<tr class="even">
+<td align="left">315</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">48</td>
+<td align="left">67.6%</td>
+</tr>
+<tr class="odd">
+<td align="left">316</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">49</td>
+<td align="left">69.0%</td>
+</tr>
+<tr class="even">
+<td align="left">318</td>
+<td align="right">2</td>
+<td align="left">2.8%</td>
+<td align="right">51</td>
+<td align="left">71.8%</td>
+</tr>
+<tr class="odd">
+<td align="left">320</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">52</td>
+<td align="left">73.2%</td>
+</tr>
+<tr class="even">
+<td align="left">322</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">53</td>
+<td align="left">74.6%</td>
+</tr>
+<tr class="odd">
+<td align="left">325</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">54</td>
+<td align="left">76.1%</td>
+</tr>
+<tr class="even">
+<td align="left">327</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">55</td>
+<td align="left">77.5%</td>
+</tr>
+<tr class="odd">
+<td align="left">329</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">56</td>
+<td align="left">78.9%</td>
+</tr>
+<tr class="even">
+<td align="left">332</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">57</td>
+<td align="left">80.3%</td>
+</tr>
+<tr class="odd">
+<td align="left">334</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">58</td>
+<td align="left">81.7%</td>
+</tr>
+<tr class="even">
+<td align="left">339</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">59</td>
+<td align="left">83.1%</td>
+</tr>
+<tr class="odd">
+<td align="left">340</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">60</td>
+<td align="left">84.5%</td>
+</tr>
+<tr class="even">
+<td align="left">341</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">61</td>
+<td align="left">85.9%</td>
+</tr>
+<tr class="odd">
+<td align="left">344</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">62</td>
+<td align="left">87.3%</td>
+</tr>
+<tr class="even">
+<td align="left">352</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">63</td>
+<td align="left">88.7%</td>
+</tr>
+<tr class="odd">
+<td align="left">359</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">64</td>
+<td align="left">90.1%</td>
+</tr>
+<tr class="even">
+<td align="left">368</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">65</td>
+<td align="left">91.5%</td>
+</tr>
+<tr class="odd">
+<td align="left">379</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">66</td>
+<td align="left">93.0%</td>
+</tr>
+<tr class="even">
+<td align="left">380</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">67</td>
+<td align="left">94.4%</td>
+</tr>
+<tr class="odd">
+<td align="left">390</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">68</td>
+<td align="left">95.8%</td>
+</tr>
+<tr class="even">
+<td align="left">392</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">69</td>
+<td align="left">97.2%</td>
+</tr>
+<tr class="odd">
+<td align="left">404</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">70</td>
+<td align="left">98.6%</td>
+</tr>
+<tr class="even">
+<td align="left">423</td>
+<td align="right">1</td>
+<td align="left">1.4%</td>
+<td align="right">71</td>
+<td align="left">100.0%</td>
+</tr>
+<tr class="odd">
+<td align="left">Total</td>
+<td align="right">71</td>
+<td align="left">-</td>
+<td align="right">71</td>
+<td align="left">100.0%</td>
+</tr>
+</tbody>
+</table>
+<p>Janitor is also used to create cross tabs (see Chapter 5).</p>
+</div>
+<div id="from-the-rmisc-package-confidence-intervals" class="section level2">
+<h2><span class="header-section-number">2.4</span> From the RMisc package (Confidence intervals)</h2>
+<p>You can use the <code>CI()</code> function from the Rmisc package to obtain confidence intervals.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rmisc)</code></pre></div>
+<pre><code>## Loading required package: lattice</code></pre>
+<pre><code>## Loading required package: plyr</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CI</span>(chickwts<span class="op">$</span>weight, <span class="dt">ci =</span> <span class="fl">0.95</span>)</code></pre></div>
+<pre><code>##    upper     mean    lower 
+## 279.7896 261.3099 242.8301</code></pre>
+</div>
+<div id="from-the-resample-package-bootstrap-confidence-intervals" class="section level2">
+<h2><span class="header-section-number">2.5</span> From the resample package (bootstrap confidence intervals)</h2>
+<p>Obtaining bootstrap confidence intervals for a single mean would build on the <code>bootstrap()</code> function from the resample library. It takes two steps. First obtaining a large number of samples from your sample. You also have to specify what statistic you want to estimate the confidence interval for. This can be anything (<code>mean()</code>, <code>median()</code>, <code>sd()</code> or even a function you create). You can also specify the number of replications; with today’s computer power there is no reason to use a low number unless you have a huge (100,000s) sample size.</p>
+<p>Save the result in an object and then use the <code>CI.bca()</code> function to obtain the level of confidence interval you want. There are also other CI methods available.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(resample)
+bootstrap_results  &lt;-<span class="st"> </span><span class="kw">bootstrap</span>(chickwts, <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">R =</span> <span class="dv">10000</span>)
+<span class="kw">CI.bca</span>(bootstrap_results, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</code></pre></div>
+<pre><code>##                                2.5%    97.5%
+## mean(weight, na.rm = TRUE) 243.0763 279.7887</code></pre>
 </div>
 <div id="conclusion" class="section level2">
-<h2><span class="header-section-number">2.4</span> Conclusion</h2>
+<h2><span class="header-section-number">2.6</span> Conclusion</h2>
 <p>This chapter presents just a handful of R functions and their many options As you gain experience using R you should read the help files, vignettes and online resources to learn more.</p>
 
 </div>

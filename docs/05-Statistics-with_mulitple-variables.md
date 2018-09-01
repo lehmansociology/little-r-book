@@ -4,6 +4,145 @@ Most of the time we want to look at the relationship between two or more variabl
 
 R has several different ways of working with multiple variables. 
 
+## Entry of variables
+
+Many R functions for multiple variables simply require that you enter the names of variables
+in the correct order. Sometimes the names will need to be in quotation marks `"name"` and sometimes not.
+
+### Cross tabs
+
+To do a cross tab (also known as two-way table or contingency table) we also use `tabyl()`. The basic function
+just gives counts for each combination. The first variable defines the rows and the second variable defines the
+columns.
+
+
+```r
+library(magrittr)
+library(janitor)
+```
+
+```
+## Warning: package 'janitor' was built under R version 3.4.4
+```
+
+```r
+mtcars %>% tabyl(cyl, gear)
+```
+
+```
+##  cyl  3 4 5
+##    4  1 8 2
+##    6  2 4 1
+##    8 12 0 2
+```
+
+Piping to `adorn_title() will add the name of the second variable.
+
+
+```r
+mtcars %>% tabyl(cyl, gear) %>%
+           adorn_title()
+```
+
+```
+##      gear    
+##  cyl    3 4 5
+##    4    1 8 2
+##    6    2 4 1
+##    8   12 0 2
+```
+
+To change to proportions use the `adorn_percentages()` functions.  In sociology we use the independent 
+variable for the columns and the dependent variable for the rows. Therefore we use the column total for
+the denominator `adorn_percentages(denominator = "col")`.  Sometimes you might want to calculate row or total
+percents, in which case the denominator would be "row" or "all". 
+
+
+
+```r
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_title()
+```
+
+```
+##                    gear                      
+##  cyl                  3                 4   5
+##    4 0.0666666666666667 0.666666666666667 0.4
+##    6  0.133333333333333 0.333333333333333 0.2
+##    8                0.8                 0 0.4
+```
+To change the formatting to percentages pipe to the `adorn_pct_formatting()` function.
+
+
+
+```r
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_ns %>%
+      adorn_title()
+```
+
+```
+## Warning: package 'bindrcpp' was built under R version 3.4.4
+```
+
+```
+##            gear                    
+##  cyl          3         4         5
+##    4  6.7%  (1) 66.7% (8) 40.0% (2)
+##    6 13.3%  (2) 33.3% (4) 20.0% (1)
+##    8 80.0% (12)  0.0% (0) 40.0% (2)
+```
+
+You can also display both the numbers and the percentages.
+
+
+```r
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_ns %>%
+      adorn_title()
+```
+
+```
+##            gear                    
+##  cyl          3         4         5
+##    4  6.7%  (1) 66.7% (8) 40.0% (2)
+##    6 13.3%  (2) 33.3% (4) 20.0% (1)
+##    8 80.0% (12)  0.0% (0) 40.0% (2)
+```
+Adding a third variable will create separate tables for level of that variable.
+
+
+```r
+mtcars %>% tabyl(cyl, gear, am) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_title()
+```
+
+```
+## $`0`
+##       gear        
+##  cyl     3     4 5
+##    4  6.7% 50.0% -
+##    6 13.3% 50.0% -
+##    8 80.0%  0.0% -
+## 
+## $`1`
+##      gear            
+##  cyl    3     4     5
+##    4    - 75.0% 40.0%
+##    6    - 25.0% 20.0%
+##    8    -  0.0% 40.0%
+```
+
+
+You can also pipe to the `knitr::kable()` function to get a more polished table (see Chapter 2)
+
 ## Using formula notation
 
 In R a "forumula" is created using the `~`  operator, which is found on the top left of the keyboard. 
@@ -12,23 +151,52 @@ In these examples the formula operator always works like this:
 `dependent_variable ~ independent_variable` 
 and if you have multiple independent_variables use a `+` to add them on the right.
 
-*Crosstab using lehmansociology*
 
 ```r
-lehmansociology::crosstab(tension ~ wool, data = warpbreaks)
+library(Rmisc)
 ```
 
 ```
-## tension ~ wool
-##         A  B 
-## L       9  9 
-## M       9  9 
-## H       9  9 
-## Total N 27 27
+## Loading required package: lattice
 ```
 
-*Ordinary Linear Model*  
+```
+## Loading required package: plyr
+```
+
+```r
+group.CI(weight ~ feed, 
+         data = chickwts, ci = .90) 
+```
+
+```
+##        feed weight.upper weight.mean weight.lower
+## 1    casein     356.9876    323.5833     290.1791
+## 2 horsebean     182.5907    160.2000     137.8093
+## 3   linseed     245.8304    218.7500     191.6696
+## 4  meatmeal     312.3758    276.9091     241.4424
+## 5   soybean     272.0480    246.4286     220.8092
+## 6 sunflower     354.2348    328.9167     303.5986
+```
+
+You can also use the formula notation for a model with no independent variable by substituting a constant on
+the right side.
+
+
+```r
+group.CI(weight ~ 1, 
+         data = chickwts, ci = .90) 
+```
+
+```
+##   weight.upper weight.mean weight.lower
+## 1     276.7549    261.3099     245.8648
+```
+
+
+### Ordinary Linear Model  
 (This means it has an interval dependent variable.)
+This works in the same way as group.CI, dependent variable on the left, independent on the right.
 
 
 ```r
@@ -45,7 +213,7 @@ lm(raises ~ critical, data = attitude)
 ##      35.025        0.396
 ```
 
-*Generalized Linear Model*
+### Generalized Linear Model
 (In this case a logistic regression.)  
 (in this code a dichtomous dependent variable is created using the cut() functions.)  
 
@@ -68,8 +236,7 @@ glm(RTEN_d ~ INTG, data = USJudgeRatings, family = binomial())
 ## Null Deviance:	    26.62 
 ## Residual Deviance: 8.603 	AIC: 12.6
 ```
-
-*Parametric t test*
+### Parametric t test
 
 ```r
 t.test(extra ~ group, data = sleep)
@@ -93,11 +260,12 @@ t.test(extra ~ group, data = sleep)
 
 ## Using group_by 
 
-Another way to look at the relationship between variables is to compare values of statistics for different groups.  In this case
-one way to do this is with the group_by function from the `dplyr` package. 
+Another way to look at the relationship between variables is to compare values of statistics for different groups.  
 
-Once you group your data there are a number of other functions within dplyr and in other packages that will use the groups
-ro organiza the results
+In this case one way to do this is with the group_by function from the `dplyr` package. 
+
+Once you group your data there are a number of other functions within dplyr and in other packages that will use the 
+groups to organize the results
 
 
 ```r
@@ -108,10 +276,6 @@ iris %>% dplyr::group_by(Species)  %>%
                           Upper_CI = mean(Sepal.Length) + 1.96*sd(Sepal.Length),
                           Lower_CI = mean(Sepal.Length) - 1.96*sd(Sepal.Length)
                           )
-```
-
-```
-## Warning: package 'bindrcpp' was built under R version 3.4.4
 ```
 
 ```

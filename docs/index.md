@@ -1,7 +1,7 @@
 --- 
 title: "A Little R Book for Lehman Sociology Students"
 author: "Lehman Sociology"
-date: '2018-08-30'
+date: '2018-09-01'
 output:
   html_document: default
   pdf_document: default
