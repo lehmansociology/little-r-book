@@ -79,7 +79,7 @@ In these examples the formula operator always works like this:
 `dependent_variable ~ independent_variable` 
 and if you have multiple independent_variables use a `+` to add them on the right.
 
-```{r}
+```{r message=FALSE}
 library(Rmisc)
 group.CI(weight ~ feed, 
          data = chickwts, ci = .90) 

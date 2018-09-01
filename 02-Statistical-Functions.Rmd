@@ -147,7 +147,7 @@ Janitor is also used to create cross tabs (see Chapter 5).
 
 You can use the `CI()` function from the Rmisc package to obtain confidence intervals.
 
-```{r}
+```{r message=FALSE}
 library(Rmisc)
 CI(chickwts$weight, ci = 0.95)
 ```
