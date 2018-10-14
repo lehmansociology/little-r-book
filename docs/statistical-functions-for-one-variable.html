@@ -25,7 +25,7 @@
 <meta name="author" content="Lehman Sociology">
 
 
-<meta name="date" content="2018-09-01">
+<meta name="date" content="2018-10-14">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -921,10 +921,8 @@ chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"
 <div id="from-the-rmisc-package-confidence-intervals" class="section level2">
 <h2><span class="header-section-number">2.4</span> From the RMisc package (Confidence intervals)</h2>
 <p>You can use the <code>CI()</code> function from the Rmisc package to obtain confidence intervals.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rmisc)</code></pre></div>
-<pre><code>## Loading required package: lattice</code></pre>
-<pre><code>## Loading required package: plyr</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">CI</span>(chickwts<span class="op">$</span>weight, <span class="dt">ci =</span> <span class="fl">0.95</span>)</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rmisc)
+<span class="kw">CI</span>(chickwts<span class="op">$</span>weight, <span class="dt">ci =</span> <span class="fl">0.95</span>)</code></pre></div>
 <pre><code>##    upper     mean    lower 
 ## 279.7896 261.3099 242.8301</code></pre>
 </div>
@@ -936,7 +934,7 @@ chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"
 bootstrap_results  &lt;-<span class="st"> </span><span class="kw">bootstrap</span>(chickwts, <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">R =</span> <span class="dv">10000</span>)
 <span class="kw">CI.bca</span>(bootstrap_results, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</code></pre></div>
 <pre><code>##                                2.5%    97.5%
-## mean(weight, na.rm = TRUE) 243.0763 279.7887</code></pre>
+## mean(weight, na.rm = TRUE) 242.5485 279.5248</code></pre>
 </div>
 <div id="conclusion" class="section level2">
 <h2><span class="header-section-number">2.6</span> Conclusion</h2>

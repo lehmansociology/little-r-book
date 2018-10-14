@@ -497,17 +497,6 @@ You can use the `CI()` function from the Rmisc package to obtain confidence inte
 
 ```r
 library(Rmisc)
-```
-
-```
-## Loading required package: lattice
-```
-
-```
-## Loading required package: plyr
-```
-
-```r
 CI(chickwts$weight, ci = 0.95)
 ```
 
@@ -539,7 +528,7 @@ CI.bca(bootstrap_results, probs = c(0.025, 0.975))
 
 ```
 ##                                2.5%    97.5%
-## mean(weight, na.rm = TRUE) 243.0763 279.7887
+## mean(weight, na.rm = TRUE) 242.5485 279.5248
 ```
 
 

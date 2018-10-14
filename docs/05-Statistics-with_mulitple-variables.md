@@ -80,7 +80,7 @@ To change the formatting to percentages pipe to the `adorn_pct_formatting()` fun
 mtcars %>% tabyl(cyl, gear) %>%
       adorn_percentages(denominator = "col") %>%
       adorn_pct_formatting() %>%
-      adorn_ns %>%
+      adorn_ns() %>%
       adorn_title()
 ```
 
@@ -154,17 +154,6 @@ and if you have multiple independent_variables use a `+` to add them on the righ
 
 ```r
 library(Rmisc)
-```
-
-```
-## Loading required package: lattice
-```
-
-```
-## Loading required package: plyr
-```
-
-```r
 group.CI(weight ~ feed, 
          data = chickwts, ci = .90) 
 ```
