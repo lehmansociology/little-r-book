@@ -222,7 +222,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
 <span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
 <span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span>adorn_ns <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_ns</span>() <span class="op">%&gt;%</span>
 <span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
 <pre><code>##            gear                    
 ##  cyl          3         4         5

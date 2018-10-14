@@ -528,7 +528,7 @@ CI.bca(bootstrap_results, probs = c(0.025, 0.975))
 
 ```
 ##                                2.5%    97.5%
-## mean(weight, na.rm = TRUE) 242.5485 279.5248
+## mean(weight, na.rm = TRUE) 242.6317 279.8129
 ```
 
 

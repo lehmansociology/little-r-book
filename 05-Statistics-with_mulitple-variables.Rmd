@@ -56,7 +56,7 @@ You can also display both the numbers and the percentages.
 mtcars %>% tabyl(cyl, gear) %>%
       adorn_percentages(denominator = "col") %>%
       adorn_pct_formatting() %>%
-      adorn_ns %>%
+      adorn_ns() %>%
       adorn_title()
 ```
 Adding a third variable will create separate tables for level of that variable.
