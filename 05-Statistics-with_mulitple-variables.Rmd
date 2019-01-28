@@ -18,7 +18,7 @@ columns.
 ```{r}
 library(magrittr)
 library(janitor)
-mtcars %>% tabyl(cyl, gear)
+mtcars %>% tabyl(cyl, gear, show_na = FALSE)
 ```
 
 Piping to `adorn_title() will add the name of the second variable.

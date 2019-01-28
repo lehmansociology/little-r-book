@@ -26,7 +26,7 @@ library(janitor)
 ```
 
 ```r
-mtcars %>% tabyl(cyl, gear)
+mtcars %>% tabyl(cyl, gear, show_na = FALSE)
 ```
 
 ```
@@ -82,10 +82,6 @@ mtcars %>% tabyl(cyl, gear) %>%
       adorn_pct_formatting() %>%
       adorn_ns() %>%
       adorn_title()
-```
-
-```
-## Warning: package 'bindrcpp' was built under R version 3.4.4
 ```
 
 ```
@@ -284,7 +280,8 @@ iris %>% dplyr::group_by(Species)  %>% skimr::skim()
 
 **Skim summary statistics**
 
-<table style='width: auto;' class='table table-condensed'>
+<table style='width: auto;'
+      class='table table-condensed'>
  <thead>
   <tr>
    <th style="text-align:right;"> n_obs </th>

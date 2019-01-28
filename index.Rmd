@@ -15,7 +15,7 @@ biblio-style: apalike
 ---
 ```{r echo=FALSE}
 library(knitr)
-opts_chunk$set(comment ='')
+opts_chunk$set(comment ='', warning=FALSE, message=FALSE)
 ```
 # Preface {-}
 

@@ -96,11 +96,14 @@ lehmansociology::sdp(chickwts$weight)
 Since it is a package you must load it.
 For producing single variable frequencies use tabyl().
 It is usually used with the `%>%` or "pipe" operator from the maggritr  package. 
+There are no missing values in this data set, but the example below illustrates
+the option you would use to remove them from the graph. If you don't include
+the option any missing values will show.
 
 ```{r message=FALSE}
 library(janitor)
 library(magrittr)
-chickwts %>% tabyl(feed)
+chickwts %>% tabyl(feed, show_na=FALSE)
 
 ```
 

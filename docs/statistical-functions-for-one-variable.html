@@ -5,11 +5,11 @@
 
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>A Little R Book for Lehman Sociology Students</title>
+  <title>Chapter 2 Statistical Functions (for one variable) | A Little R Book for Lehman Sociology Students</title>
   <meta name="description" content="Things you should know or that may help with R">
-  <meta name="generator" content="bookdown 0.7 and GitBook 2.6.7">
+  <meta name="generator" content="bookdown  and GitBook 2.6.7">
 
-  <meta property="og:title" content="A Little R Book for Lehman Sociology Students" />
+  <meta property="og:title" content="Chapter 2 Statistical Functions (for one variable) | A Little R Book for Lehman Sociology Students" />
   <meta property="og:type" content="book" />
   
   
@@ -17,7 +17,7 @@
   <meta name="github-repo" content="lehmansociology/book" />
 
   <meta name="twitter:card" content="summary" />
-  <meta name="twitter:title" content="A Little R Book for Lehman Sociology Students" />
+  <meta name="twitter:title" content="Chapter 2 Statistical Functions (for one variable) | A Little R Book for Lehman Sociology Students" />
   
   <meta name="twitter:description" content="Things you should know or that may help with R" />
   
@@ -25,7 +25,7 @@
 <meta name="author" content="Lehman Sociology">
 
 
-<meta name="date" content="2018-10-14">
+<meta name="date" content="2019-01-28">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -36,6 +36,7 @@
 <link rel="next" href="code.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
+<link href="libs/gitbook-2.6.7/css/plugin-table.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-highlight.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-search.css" rel="stylesheet" />
@@ -256,12 +257,11 @@ lehmansociology<span class="op">::</span><span class="kw">sdp</span>(chickwts<sp
 </div>
 <div id="these-are-from-the-janitor-package" class="section level2">
 <h2><span class="header-section-number">2.3</span> These are from the Janitor package</h2>
-<p>Since it is a package you must load it. For producing single variable frequencies use tabyl(). It is usually used with the <code>%&gt;%</code> or “pipe” operator from the maggritr package.</p>
+<p>Since it is a package you must load it. For producing single variable frequencies use tabyl(). It is usually used with the <code>%&gt;%</code> or “pipe” operator from the maggritr package. There are no missing values in this data set, but the example below illustrates the option you would use to remove them from the graph. If you don’t include the option any missing values will show.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(janitor)</code></pre></div>
 <pre><code>## Warning: package &#39;janitor&#39; was built under R version 3.4.4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)
-chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(feed)</code></pre></div>
-<pre><code>## Warning: package &#39;bindrcpp&#39; was built under R version 3.4.4</code></pre>
+chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(feed, <span class="dt">show_na=</span><span class="ot">FALSE</span>)</code></pre></div>
 <pre><code>##       feed  n   percent
 ##     casein 12 0.1690141
 ##  horsebean 10 0.1408451
@@ -934,7 +934,7 @@ chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"
 bootstrap_results  &lt;-<span class="st"> </span><span class="kw">bootstrap</span>(chickwts, <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">R =</span> <span class="dv">10000</span>)
 <span class="kw">CI.bca</span>(bootstrap_results, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</code></pre></div>
 <pre><code>##                                2.5%    97.5%
-## mean(weight, na.rm = TRUE) 242.6317 279.8129</code></pre>
+## mean(weight, na.rm = TRUE) 242.7183 280.1817</code></pre>
 </div>
 <div id="conclusion" class="section level2">
 <h2><span class="header-section-number">2.6</span> Conclusion</h2>
@@ -968,7 +968,7 @@ gitbook.start({
 "google": false,
 "linkedin": false,
 "weibo": false,
-"instapper": false,
+"instapaper": false,
 "vk": false,
 "all": ["facebook", "google", "twitter", "linkedin", "weibo", "instapaper"]
 },
@@ -978,6 +978,10 @@ gitbook.start({
 "size": 2
 },
 "edit": {
+"link": null,
+"text": null
+},
+"history": {
 "link": null,
 "text": null
 },
