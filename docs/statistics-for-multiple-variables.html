@@ -25,7 +25,7 @@
 <meta name="author" content="Lehman Sociology">
 
 
-<meta name="date" content="2019-01-28">
+<meta name="date" content="2019-02-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,15 +129,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="errors.html"><a href="errors.html#other-problems-when-knittng"><i class="fa fa-check"></i><b>4.4</b> Other problems when knittng</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html"><i class="fa fa-check"></i><b>5</b> Statistics for Multiple Variables</a><ul>
-<li class="chapter" data-level="5.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#entry-of-variables"><i class="fa fa-check"></i><b>5.1</b> Entry of variables</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#cross-tabs"><i class="fa fa-check"></i><b>5.1.1</b> Cross tabs</a></li>
+<li class="chapter" data-level="5.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-formula-notation"><i class="fa fa-check"></i><b>5.1</b> Using formula notation</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#ordinary-linear-model"><i class="fa fa-check"></i><b>5.1.1</b> Ordinary Linear Model</a></li>
+<li class="chapter" data-level="5.1.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#generalized-linear-model"><i class="fa fa-check"></i><b>5.1.2</b> Generalized Linear Model</a></li>
+<li class="chapter" data-level="5.1.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#parametric-t-test"><i class="fa fa-check"></i><b>5.1.3</b> Parametric t test</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-formula-notation"><i class="fa fa-check"></i><b>5.2</b> Using formula notation</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#ordinary-linear-model"><i class="fa fa-check"></i><b>5.2.1</b> Ordinary Linear Model</a></li>
-<li class="chapter" data-level="5.2.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#generalized-linear-model"><i class="fa fa-check"></i><b>5.2.2</b> Generalized Linear Model</a></li>
-<li class="chapter" data-level="5.2.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#parametric-t-test"><i class="fa fa-check"></i><b>5.2.3</b> Parametric t test</a></li>
+<li class="chapter" data-level="5.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-group_by"><i class="fa fa-check"></i><b>5.2</b> Using group_by</a></li>
+<li class="chapter" data-level="5.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#entry-of-variables"><i class="fa fa-check"></i><b>5.3</b> Entry of variables</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#cross-tabs"><i class="fa fa-check"></i><b>5.3.1</b> Cross tabs</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-group_by"><i class="fa fa-check"></i><b>5.3</b> Using group_by</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>6</b> Graphs</a><ul>
 <li class="chapter" data-level="6.1" data-path="graphs.html"><a href="graphs.html#how-ggplot-works"><i class="fa fa-check"></i><b>6.1</b> How ggplot works</a><ul>
@@ -176,84 +176,26 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <h1><span class="header-section-number">Chapter 5</span> Statistics for Multiple Variables</h1>
 <p>Most of the time we want to look at the relationship between two or more variables.</p>
 <p>R has several different ways of working with multiple variables.</p>
-<div id="entry-of-variables" class="section level2">
-<h2><span class="header-section-number">5.1</span> Entry of variables</h2>
-<p>Many R functions for multiple variables simply require that you enter the names of variables in the correct order. Sometimes the names will need to be in quotation marks <code>&quot;name&quot;</code> and sometimes not.</p>
-<div id="cross-tabs" class="section level3">
-<h3><span class="header-section-number">5.1.1</span> Cross tabs</h3>
-<p>To do a cross tab (also known as two-way table or contingency table) we also use <code>tabyl()</code>. The basic function just gives counts for each combination. The first variable defines the rows and the second variable defines the columns.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)
-<span class="kw">library</span>(janitor)</code></pre></div>
-<pre><code>## Warning: package &#39;janitor&#39; was built under R version 3.4.4</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear, <span class="dt">show_na =</span> <span class="ot">FALSE</span>)</code></pre></div>
-<pre><code>##  cyl  3 4 5
-##    4  1 8 2
-##    6  2 4 1
-##    8 12 0 2</code></pre>
-<p>Piping to `adorn_title() will add the name of the second variable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
-<span class="st">           </span><span class="kw">adorn_title</span>()</code></pre></div>
-<pre><code>##      gear    
-##  cyl    3 4 5
-##    4    1 8 2
-##    6    2 4 1
-##    8   12 0 2</code></pre>
-<p>To change to proportions use the <code>adorn_percentages()</code> functions. In sociology we use the independent variable for the columns and the dependent variable for the rows. Therefore we use the column total for the denominator <code>adorn_percentages(denominator = &quot;col&quot;)</code>. Sometimes you might want to calculate row or total percents, in which case the denominator would be “row” or “all”.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
-<pre><code>##                    gear                      
-##  cyl                  3                 4   5
-##    4 0.0666666666666667 0.666666666666667 0.4
-##    6  0.133333333333333 0.333333333333333 0.2
-##    8                0.8                 0 0.4</code></pre>
-<p>To change the formatting to percentages pipe to the <code>adorn_pct_formatting()</code> function.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_ns</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
-<pre><code>##            gear                    
-##  cyl          3         4         5
-##    4  6.7%  (1) 66.7% (8) 40.0% (2)
-##    6 13.3%  (2) 33.3% (4) 20.0% (1)
-##    8 80.0% (12)  0.0% (0) 40.0% (2)</code></pre>
-<p>You can also display both the numbers and the percentages.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_ns</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
-<pre><code>##            gear                    
-##  cyl          3         4         5
-##    4  6.7%  (1) 66.7% (8) 40.0% (2)
-##    6 13.3%  (2) 33.3% (4) 20.0% (1)
-##    8 80.0% (12)  0.0% (0) 40.0% (2)</code></pre>
-<p>Adding a third variable will create separate tables for level of that variable.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear, am) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
-<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
-<pre><code>## $`0`
-##       gear        
-##  cyl     3     4 5
-##    4  6.7% 50.0% -
-##    6 13.3% 50.0% -
-##    8 80.0%  0.0% -
-## 
-## $`1`
-##      gear            
-##  cyl    3     4     5
-##    4    - 75.0% 40.0%
-##    6    - 25.0% 20.0%
-##    8    -  0.0% 40.0%</code></pre>
-<p>You can also pipe to the <code>knitr::kable()</code> function to get a more polished table (see Chapter 2)</p>
-</div>
-</div>
 <div id="using-formula-notation" class="section level2">
-<h2><span class="header-section-number">5.2</span> Using formula notation</h2>
+<h2><span class="header-section-number">5.1</span> Using formula notation</h2>
 <p>In R a “forumula” is created using the <code>~</code> operator, which is found on the top left of the keyboard.</p>
 <p>In these examples the formula operator always works like this: <code>dependent_variable ~ independent_variable</code> and if you have multiple independent_variables use a <code>+</code> to add them on the right.</p>
+<p>One way to do crosstabs, also known as contingency tables, that uses the formula notation is to use the crosstab function from lehmansociology. This gives you the number of observations in each combination of the variables.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lehmansociology<span class="op">::</span><span class="kw">crosstab</span>(cyl <span class="op">~</span><span class="st"> </span>gear, <span class="dt">data =</span> mtcars, <span class="dt">title =</span> <span class="st">&quot;Cylinders by number of gears&quot;</span>)</code></pre></div>
+<pre><code>## Cylinders by number of gears
+##         3  4  5
+## 4       1  8  2
+## 6       2  4  1
+## 8       12 0  2
+## Total N 15 12 5</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">lehmansociology<span class="op">::</span><span class="kw">crosstab</span>(cyl <span class="op">~</span><span class="st"> </span>gear, <span class="dt">data =</span> mtcars, <span class="dt">title =</span> <span class="st">&quot;Cylinders by number of gears&quot;</span>, <span class="dt">format =</span> <span class="st">&quot;column_percent&quot;</span>)</code></pre></div>
+<pre><code>## Cylinders by number of gears
+##         3    4    5 
+## 4       6.7  66.7 40
+## 6       13.3 33.3 20
+## 8       80   0    40
+## Total N 15   12   5</code></pre>
+<p>(You can also use the Janitor tabyl function to make cross tabs, this is explained in the next section.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(Rmisc)
 <span class="kw">group.CI</span>(weight <span class="op">~</span><span class="st"> </span>feed, 
          <span class="dt">data =</span> chickwts, <span class="dt">ci =</span> .<span class="dv">90</span>) </code></pre></div>
@@ -270,7 +212,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <pre><code>##   weight.upper weight.mean weight.lower
 ## 1     276.7549    261.3099     245.8648</code></pre>
 <div id="ordinary-linear-model" class="section level3">
-<h3><span class="header-section-number">5.2.1</span> Ordinary Linear Model</h3>
+<h3><span class="header-section-number">5.1.1</span> Ordinary Linear Model</h3>
 <p>(This means it has an interval dependent variable.) This works in the same way as group.CI, dependent variable on the left, independent on the right.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">lm</span>(raises <span class="op">~</span><span class="st"> </span>critical, <span class="dt">data =</span> attitude)</code></pre></div>
 <pre><code>## 
@@ -282,7 +224,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ##      35.025        0.396</code></pre>
 </div>
 <div id="generalized-linear-model" class="section level3">
-<h3><span class="header-section-number">5.2.2</span> Generalized Linear Model</h3>
+<h3><span class="header-section-number">5.1.2</span> Generalized Linear Model</h3>
 <p>(In this case a logistic regression.)<br />
 (in this code a dichtomous dependent variable is created using the cut() functions.)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">USJudgeRatings<span class="op">$</span>RTEN_d &lt;-<span class="st"> </span><span class="kw">cut</span>(USJudgeRatings<span class="op">$</span>RTEN, <span class="kw">median</span>(USJudgeRatings<span class="op">$</span>RTEN))
@@ -300,7 +242,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 ## Residual Deviance: 8.603     AIC: 12.6</code></pre>
 </div>
 <div id="parametric-t-test" class="section level3">
-<h3><span class="header-section-number">5.2.3</span> Parametric t test</h3>
+<h3><span class="header-section-number">5.1.3</span> Parametric t test</h3>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">t.test</span>(extra <span class="op">~</span><span class="st"> </span>group, <span class="dt">data =</span> sleep)</code></pre></div>
 <pre><code>## 
 ##  Welch Two Sample t-test
@@ -316,7 +258,7 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 </div>
 </div>
 <div id="using-group_by" class="section level2">
-<h2><span class="header-section-number">5.3</span> Using group_by</h2>
+<h2><span class="header-section-number">5.2</span> Using group_by</h2>
 <p>Another way to look at the relationship between variables is to compare values of statistics for different groups.</p>
 <p>In this case one way to do this is with the group_by function from the <code>dplyr</code> package.</p>
 <p>Once you group your data there are a number of other functions within dplyr and in other packages that will use the groups to organize the results</p>
@@ -330,30 +272,36 @@ iris <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op
 <pre><code>## # A tibble: 3 x 5
 ##   Species    mean_sepal_length median_sepal_legth Upper_CI Lower_CI
 ##   &lt;fct&gt;                  &lt;dbl&gt;              &lt;dbl&gt;    &lt;dbl&gt;    &lt;dbl&gt;
-## 1 setosa                  5.01               5.00     5.70     4.32
-## 2 versicolor              5.94               5.90     6.95     4.92
-## 3 virginica               6.59               6.50     7.83     5.34</code></pre>
+## 1 setosa                  5.01                5       5.70     4.32
+## 2 versicolor              5.94                5.9     6.95     4.92
+## 3 virginica               6.59                6.5     7.83     5.34</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">iris <span class="op">%&gt;%</span><span class="st"> </span>dplyr<span class="op">::</span><span class="kw">group_by</span>(Species)  <span class="op">%&gt;%</span><span class="st"> </span>skimr<span class="op">::</span><span class="kw">skim</span>()</code></pre></div>
-<p><strong>Skim summary statistics</strong></p>
-<table style="width: auto;" class="table table-condensed">
-<thead>
-<tr>
-<th style="text-align:right;">
-n_obs
-</th>
-<th style="text-align:right;">
-n_cols
-</th>
-</tr>
-</thead>
+<table>
+<caption><span id="tab:unnamed-chunk-9">Table 5.1: </span>Data summary</caption>
 <tbody>
-<tr>
-<td style="text-align:right;">
-150
-</td>
-<td style="text-align:right;">
-5
-</td>
+<tr class="odd">
+<td align="left">Number of rows</td>
+<td align="left">150</td>
+</tr>
+<tr class="even">
+<td align="left">Number of columns</td>
+<td align="left">5</td>
+</tr>
+<tr class="odd">
+<td align="left">Name</td>
+<td align="left">Piped data</td>
+</tr>
+<tr class="even">
+<td align="left">Column type frequency</td>
+<td align="left"></td>
+</tr>
+<tr class="odd">
+<td align="left">numeric</td>
+<td align="left">4</td>
+</tr>
+<tr class="even">
+<td align="left">Group variables</td>
+<td align="left">Species</td>
 </tr>
 </tbody>
 </table>
@@ -361,7 +309,7 @@ n_cols
 <table>
 <thead>
 <tr class="header">
-<th align="left">variable</th>
+<th align="left">skim_variable</th>
 <th align="left">Species</th>
 <th align="right">missing</th>
 <th align="right">complete</th>
@@ -559,7 +507,81 @@ n_cols
 </tr>
 </tbody>
 </table>
+</div>
+<div id="entry-of-variables" class="section level2">
+<h2><span class="header-section-number">5.3</span> Entry of variables</h2>
+<p>Many R functions for multiple variables simply require that you enter the names of variables in the correct order. Sometimes the names will need to be in quotation marks <code>&quot;name&quot;</code> and sometimes not.</p>
+<div id="cross-tabs" class="section level3">
+<h3><span class="header-section-number">5.3.1</span> Cross tabs</h3>
+<p>To do a cross tab (also known as two-way table or contingency table) we also use <code>tabyl()</code>. The basic function just gives counts for each combination. The first variable defines the rows and the second variable defines the columns.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)
+<span class="kw">library</span>(janitor)</code></pre></div>
+<pre><code>## Warning: package &#39;janitor&#39; was built under R version 3.4.4</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear, <span class="dt">show_na =</span> <span class="ot">FALSE</span>)</code></pre></div>
+<pre><code>##  cyl  3 4 5
+##    4  1 8 2
+##    6  2 4 1
+##    8 12 0 2</code></pre>
+<p>Piping to `adorn_title() will add the name of the second variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
+<span class="st">           </span><span class="kw">adorn_title</span>()</code></pre></div>
+<pre><code>##      gear    
+##  cyl    3 4 5
+##    4    1 8 2
+##    6    2 4 1
+##    8   12 0 2</code></pre>
+<p>To change to proportions use the <code>adorn_percentages()</code> functions. In sociology we use the independent variable for the columns and the dependent variable for the rows. Therefore we use the column total for the denominator <code>adorn_percentages(denominator = &quot;col&quot;)</code>. Sometimes you might want to calculate row or total percents, in which case the denominator would be “row” or “all”.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
+<pre><code>##                    gear                      
+##  cyl                  3                 4   5
+##    4 0.0666666666666667 0.666666666666667 0.4
+##    6  0.133333333333333 0.333333333333333 0.2
+##    8                0.8                 0 0.4</code></pre>
+<p>To change the formatting to percentages pipe to the <code>adorn_pct_formatting()</code> function.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_ns</span>() <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
+<pre><code>##            gear                    
+##  cyl          3         4         5
+##    4  6.7%  (1) 66.7% (8) 40.0% (2)
+##    6 13.3%  (2) 33.3% (4) 20.0% (1)
+##    8 80.0% (12)  0.0% (0) 40.0% (2)</code></pre>
+<p>You can also display both the numbers and the percentages.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_ns</span>() <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
+<pre><code>##            gear                    
+##  cyl          3         4         5
+##    4  6.7%  (1) 66.7% (8) 40.0% (2)
+##    6 13.3%  (2) 33.3% (4) 20.0% (1)
+##    8 80.0% (12)  0.0% (0) 40.0% (2)</code></pre>
+<p>Adding a third variable will create separate tables for level of that variable.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">mtcars <span class="op">%&gt;%</span><span class="st"> </span><span class="kw">tabyl</span>(cyl, gear, am) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_percentages</span>(<span class="dt">denominator =</span> <span class="st">&quot;col&quot;</span>) <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_pct_formatting</span>() <span class="op">%&gt;%</span>
+<span class="st">      </span><span class="kw">adorn_title</span>()</code></pre></div>
+<pre><code>## $`0`
+##       gear        
+##  cyl     3     4 5
+##    4  6.7% 50.0% -
+##    6 13.3% 50.0% -
+##    8 80.0%  0.0% -
+## 
+## $`1`
+##      gear            
+##  cyl    3     4     5
+##    4    - 75.0% 40.0%
+##    6    - 25.0% 20.0%
+##    8    -  0.0% 40.0%</code></pre>
+<p>You can also pipe to the <code>knitr::kable()</code> function to get a more polished table (see Chapter 2)</p>
 
+</div>
 </div>
 </div>
             </section>

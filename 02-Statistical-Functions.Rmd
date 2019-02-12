@@ -89,11 +89,25 @@ lehmansociology::varp(chickwts$weight)
 # Standard deviation for a population 
 # This is similar to the STDEVP
 lehmansociology::sdp(chickwts$weight)
+
+# Frequency distribution. Read about options in ?frequency
+lehmansociology::frequency(chickwts$feed)
+
 ```
+
+You can use an the cumulative.percent and/or cumulative.freq options to get cumulative results.
+
+```{r}
+# Cumulative frequency table
+lehmansociology::frequency(warpbreaks$breaks, cumulative.percent = TRUE)
+```
+
 
 ## These are from the Janitor package
 
-Since it is a package you must load it.
+Since it is a package you must load it as here or use the :: notation. 
+This is a different way to get frequency distributions.
+
 For producing single variable frequencies use tabyl().
 It is usually used with the `%>%` or "pipe" operator from the maggritr  package. 
 There are no missing values in this data set, but the example below illustrates

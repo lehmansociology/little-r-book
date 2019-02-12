@@ -4,72 +4,6 @@ Most of the time we want to look at the relationship between two or more variabl
 
 R has several different ways of working with multiple variables. 
 
-## Entry of variables
-
-Many R functions for multiple variables simply require that you enter the names of variables
-in the correct order. Sometimes the names will need to be in quotation marks `"name"` and sometimes not.
-
-### Cross tabs
-
-To do a cross tab (also known as two-way table or contingency table) we also use `tabyl()`. The basic function
-just gives counts for each combination. The first variable defines the rows and the second variable defines the
-columns.
-
-```{r}
-library(magrittr)
-library(janitor)
-mtcars %>% tabyl(cyl, gear, show_na = FALSE)
-```
-
-Piping to `adorn_title() will add the name of the second variable.
-
-```{r}
-mtcars %>% tabyl(cyl, gear) %>%
-           adorn_title()
-```
-
-To change to proportions use the `adorn_percentages()` functions.  In sociology we use the independent 
-variable for the columns and the dependent variable for the rows. Therefore we use the column total for
-the denominator `adorn_percentages(denominator = "col")`.  Sometimes you might want to calculate row or total
-percents, in which case the denominator would be "row" or "all". 
-
-
-```{r}
-mtcars %>% tabyl(cyl, gear) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_title()
-```
-To change the formatting to percentages pipe to the `adorn_pct_formatting()` function.
-
-
-```{r}
-mtcars %>% tabyl(cyl, gear) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_pct_formatting() %>%
-      adorn_ns() %>%
-      adorn_title()
-```
-
-You can also display both the numbers and the percentages.
-
-```{r}
-mtcars %>% tabyl(cyl, gear) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_pct_formatting() %>%
-      adorn_ns() %>%
-      adorn_title()
-```
-Adding a third variable will create separate tables for level of that variable.
-
-```{r}
-mtcars %>% tabyl(cyl, gear, am) %>%
-      adorn_percentages(denominator = "col") %>%
-      adorn_pct_formatting() %>%
-      adorn_title()
-```
-
-
-You can also pipe to the `knitr::kable()` function to get a more polished table (see Chapter 2)
 
 ## Using formula notation
 
@@ -78,6 +12,21 @@ In R a "forumula" is created using the `~`  operator, which is found on the top 
 In these examples the formula operator always works like this:
 `dependent_variable ~ independent_variable` 
 and if you have multiple independent_variables use a `+` to add them on the right.
+
+One way to do crosstabs, also known as contingency tables, that uses the formula notation is to use the crosstab function
+from lehmansociology.  This gives you the number of observations in each combination of the variables.
+
+```{r}
+lehmansociology::crosstab(cyl ~ gear, data = mtcars, title = "Cylinders by number of gears")
+```
+
+```{r}
+lehmansociology::crosstab(cyl ~ gear, data = mtcars, title = "Cylinders by number of gears", format = "column_percent")
+```
+
+
+(You can also use the Janitor tabyl function to make cross tabs, this is explained in the next section.)
+
 
 ```{r message=FALSE}
 library(Rmisc)
@@ -141,5 +90,72 @@ iris %>% dplyr::group_by(Species)  %>%
 iris %>% dplyr::group_by(Species)  %>% skimr::skim()
 ```
 
+## Entry of variables
+
+Many R functions for multiple variables simply require that you enter the names of variables
+in the correct order. Sometimes the names will need to be in quotation marks `"name"` and sometimes not.
+
+### Cross tabs
+
+
+To do a cross tab (also known as two-way table or contingency table) we also use `tabyl()`. The basic function
+just gives counts for each combination. The first variable defines the rows and the second variable defines the
+columns.
+
+```{r}
+library(magrittr)
+library(janitor)
+mtcars %>% tabyl(cyl, gear, show_na = FALSE)
+```
+
+Piping to `adorn_title() will add the name of the second variable.
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+           adorn_title()
+```
+
+To change to proportions use the `adorn_percentages()` functions.  In sociology we use the independent 
+variable for the columns and the dependent variable for the rows. Therefore we use the column total for
+the denominator `adorn_percentages(denominator = "col")`.  Sometimes you might want to calculate row or total
+percents, in which case the denominator would be "row" or "all". 
+
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_title()
+```
+To change the formatting to percentages pipe to the `adorn_pct_formatting()` function.
+
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_ns() %>%
+      adorn_title()
+```
+
+You can also display both the numbers and the percentages.
+
+```{r}
+mtcars %>% tabyl(cyl, gear) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_ns() %>%
+      adorn_title()
+```
+Adding a third variable will create separate tables for level of that variable.
+
+```{r}
+mtcars %>% tabyl(cyl, gear, am) %>%
+      adorn_percentages(denominator = "col") %>%
+      adorn_pct_formatting() %>%
+      adorn_title()
+```
+
+
+You can also pipe to the `knitr::kable()` function to get a more polished table (see Chapter 2)
 
 

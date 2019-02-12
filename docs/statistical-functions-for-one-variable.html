@@ -25,7 +25,7 @@
 <meta name="author" content="Lehman Sociology">
 
 
-<meta name="date" content="2019-01-28">
+<meta name="date" content="2019-02-11">
 
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="apple-mobile-web-app-capable" content="yes">
@@ -129,15 +129,15 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li class="chapter" data-level="4.4" data-path="errors.html"><a href="errors.html#other-problems-when-knittng"><i class="fa fa-check"></i><b>4.4</b> Other problems when knittng</a></li>
 </ul></li>
 <li class="chapter" data-level="5" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html"><i class="fa fa-check"></i><b>5</b> Statistics for Multiple Variables</a><ul>
-<li class="chapter" data-level="5.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#entry-of-variables"><i class="fa fa-check"></i><b>5.1</b> Entry of variables</a><ul>
-<li class="chapter" data-level="5.1.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#cross-tabs"><i class="fa fa-check"></i><b>5.1.1</b> Cross tabs</a></li>
+<li class="chapter" data-level="5.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-formula-notation"><i class="fa fa-check"></i><b>5.1</b> Using formula notation</a><ul>
+<li class="chapter" data-level="5.1.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#ordinary-linear-model"><i class="fa fa-check"></i><b>5.1.1</b> Ordinary Linear Model</a></li>
+<li class="chapter" data-level="5.1.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#generalized-linear-model"><i class="fa fa-check"></i><b>5.1.2</b> Generalized Linear Model</a></li>
+<li class="chapter" data-level="5.1.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#parametric-t-test"><i class="fa fa-check"></i><b>5.1.3</b> Parametric t test</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-formula-notation"><i class="fa fa-check"></i><b>5.2</b> Using formula notation</a><ul>
-<li class="chapter" data-level="5.2.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#ordinary-linear-model"><i class="fa fa-check"></i><b>5.2.1</b> Ordinary Linear Model</a></li>
-<li class="chapter" data-level="5.2.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#generalized-linear-model"><i class="fa fa-check"></i><b>5.2.2</b> Generalized Linear Model</a></li>
-<li class="chapter" data-level="5.2.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#parametric-t-test"><i class="fa fa-check"></i><b>5.2.3</b> Parametric t test</a></li>
+<li class="chapter" data-level="5.2" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-group_by"><i class="fa fa-check"></i><b>5.2</b> Using group_by</a></li>
+<li class="chapter" data-level="5.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#entry-of-variables"><i class="fa fa-check"></i><b>5.3</b> Entry of variables</a><ul>
+<li class="chapter" data-level="5.3.1" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#cross-tabs"><i class="fa fa-check"></i><b>5.3.1</b> Cross tabs</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="statistics-for-multiple-variables.html"><a href="statistics-for-multiple-variables.html#using-group_by"><i class="fa fa-check"></i><b>5.3</b> Using group_by</a></li>
 </ul></li>
 <li class="chapter" data-level="6" data-path="graphs.html"><a href="graphs.html"><i class="fa fa-check"></i><b>6</b> Graphs</a><ul>
 <li class="chapter" data-level="6.1" data-path="graphs.html"><a href="graphs.html#how-ggplot-works"><i class="fa fa-check"></i><b>6.1</b> How ggplot works</a><ul>
@@ -254,10 +254,57 @@ lehmansociology<span class="op">::</span><span class="kw">varp</span>(chickwts<s
 <span class="co"># This is similar to the STDEVP</span>
 lehmansociology<span class="op">::</span><span class="kw">sdp</span>(chickwts<span class="op">$</span>weight)</code></pre></div>
 <pre><code>## [1] 77.52194</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Frequency distribution. Read about options in ?frequency</span>
+lehmansociology<span class="op">::</span><span class="kw">frequency</span>(chickwts<span class="op">$</span>feed)</code></pre></div>
+<pre><code>##  Values    Freq Percent
+##  casein    12   16.9   
+##  horsebean 10   14.1   
+##  linseed   12   16.9   
+##  meatmeal  11   15.5   
+##  soybean   14   19.7   
+##  sunflower 12   16.9   
+##  Total     71   100</code></pre>
+<p>You can use an the cumulative.percent and/or cumulative.freq options to get cumulative results.</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Cumulative frequency table</span>
+lehmansociology<span class="op">::</span><span class="kw">frequency</span>(warpbreaks<span class="op">$</span>breaks, <span class="dt">cumulative.percent =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##  Values Freq Percent Cum. Percent
+##  10     1    1.9     1.9         
+##  12     1    1.9     3.8         
+##  13     1    1.9     5.7         
+##  14     1    1.9     7.6         
+##  15     3    5.6     13.2        
+##  16     2    3.7     16.9        
+##  17     2    3.7     20.6        
+##  18     3    5.6     26.2        
+##  19     2    3.7     29.9        
+##  20     2    3.7     33.6        
+##  21     4    7.4     41          
+##  24     2    3.7     44.7        
+##  25     1    1.9     46.6        
+##  26     4    7.4     54          
+##  27     1    1.9     55.9        
+##  28     3    5.6     61.5        
+##  29     4    7.4     68.9        
+##  30     2    3.7     72.6        
+##  31     1    1.9     74.5        
+##  35     1    1.9     76.4        
+##  36     2    3.7     80.1        
+##  39     2    3.7     83.8        
+##  41     1    1.9     85.7        
+##  42     1    1.9     87.6        
+##  43     1    1.9     89.5        
+##  44     1    1.9     91.4        
+##  51     1    1.9     93.3        
+##  52     1    1.9     95.2        
+##  54     1    1.9     97.1        
+##  67     1    1.9     99          
+##  70     1    1.9     100.9       
+##  Total  54   100.9</code></pre>
 </div>
 <div id="these-are-from-the-janitor-package" class="section level2">
 <h2><span class="header-section-number">2.3</span> These are from the Janitor package</h2>
-<p>Since it is a package you must load it. For producing single variable frequencies use tabyl(). It is usually used with the <code>%&gt;%</code> or “pipe” operator from the maggritr package. There are no missing values in this data set, but the example below illustrates the option you would use to remove them from the graph. If you don’t include the option any missing values will show.</p>
+<p>Since it is a package you must load it as here or use the :: notation. This is a different way to get frequency distributions.</p>
+<p>For producing single variable frequencies use tabyl(). It is usually used with the <code>%&gt;%</code> or “pipe” operator from the maggritr package. There are no missing values in this data set, but the example below illustrates the option you would use to remove them from the graph. If you don’t include the option any missing values will show.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(janitor)</code></pre></div>
 <pre><code>## Warning: package &#39;janitor&#39; was built under R version 3.4.4</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(magrittr)
@@ -434,7 +481,7 @@ chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"
 <span class="st">            </span><span class="kw">adorn_cum_pct_formatting</span>() <span class="op">%&gt;%</span>
 <span class="st">            </span>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="dt">caption =</span> <span class="st">&quot;Weights of chicks&quot;</span>)</code></pre></div>
 <table>
-<caption><span id="tab:unnamed-chunk-10">Table 2.1: </span>Weights of chicks</caption>
+<caption><span id="tab:unnamed-chunk-11">Table 2.1: </span>Weights of chicks</caption>
 <thead>
 <tr class="header">
 <th align="left">weight</th>
@@ -934,7 +981,7 @@ chickwts <span class="op">%&gt;%</span><span class="st"> </span><span class="kw"
 bootstrap_results  &lt;-<span class="st"> </span><span class="kw">bootstrap</span>(chickwts, <span class="kw">mean</span>(weight, <span class="dt">na.rm =</span> <span class="ot">TRUE</span>), <span class="dt">R =</span> <span class="dv">10000</span>)
 <span class="kw">CI.bca</span>(bootstrap_results, <span class="dt">probs =</span> <span class="kw">c</span>(<span class="fl">0.025</span>, <span class="fl">0.975</span>))</code></pre></div>
 <pre><code>##                                2.5%    97.5%
-## mean(weight, na.rm = TRUE) 242.7183 280.1817</code></pre>
+## mean(weight, na.rm = TRUE) 242.7296 279.6218</code></pre>
 </div>
 <div id="conclusion" class="section level2">
 <h2><span class="header-section-number">2.6</span> Conclusion</h2>

@@ -187,9 +187,72 @@ lehmansociology::sdp(chickwts$weight)
 ## [1] 77.52194
 ```
 
+```r
+# Frequency distribution. Read about options in ?frequency
+lehmansociology::frequency(chickwts$feed)
+```
+
+```
+##  Values    Freq Percent
+##  casein    12   16.9   
+##  horsebean 10   14.1   
+##  linseed   12   16.9   
+##  meatmeal  11   15.5   
+##  soybean   14   19.7   
+##  sunflower 12   16.9   
+##  Total     71   100
+```
+
+You can use an the cumulative.percent and/or cumulative.freq options to get cumulative results.
+
+
+```r
+# Cumulative frequency table
+lehmansociology::frequency(warpbreaks$breaks, cumulative.percent = TRUE)
+```
+
+```
+##  Values Freq Percent Cum. Percent
+##  10     1    1.9     1.9         
+##  12     1    1.9     3.8         
+##  13     1    1.9     5.7         
+##  14     1    1.9     7.6         
+##  15     3    5.6     13.2        
+##  16     2    3.7     16.9        
+##  17     2    3.7     20.6        
+##  18     3    5.6     26.2        
+##  19     2    3.7     29.9        
+##  20     2    3.7     33.6        
+##  21     4    7.4     41          
+##  24     2    3.7     44.7        
+##  25     1    1.9     46.6        
+##  26     4    7.4     54          
+##  27     1    1.9     55.9        
+##  28     3    5.6     61.5        
+##  29     4    7.4     68.9        
+##  30     2    3.7     72.6        
+##  31     1    1.9     74.5        
+##  35     1    1.9     76.4        
+##  36     2    3.7     80.1        
+##  39     2    3.7     83.8        
+##  41     1    1.9     85.7        
+##  42     1    1.9     87.6        
+##  43     1    1.9     89.5        
+##  44     1    1.9     91.4        
+##  51     1    1.9     93.3        
+##  52     1    1.9     95.2        
+##  54     1    1.9     97.1        
+##  67     1    1.9     99          
+##  70     1    1.9     100.9       
+##  Total  54   100.9
+```
+
+
 ## These are from the Janitor package
 
-Since it is a package you must load it.
+Since it is a package you must load it as here or use the :: notation. 
+This is a different way to get frequency distributions.
+
 For producing single variable frequencies use tabyl().
 It is usually used with the `%>%` or "pipe" operator from the maggritr  package. 
 There are no missing values in this data set, but the example below illustrates
@@ -414,7 +477,7 @@ chickwts %>% tabyl(weight)  %>%
 
 
 
-Table: (\#tab:unnamed-chunk-10)Weights of chicks
+Table: (\#tab:unnamed-chunk-11)Weights of chicks
 
 weight     n  percent    cum freq  cum pct   
 -------  ---  --------  ---------  ----------
@@ -527,7 +590,7 @@ CI.bca(bootstrap_results, probs = c(0.025, 0.975))
 
 ```
 ##                                2.5%    97.5%
-## mean(weight, na.rm = TRUE) 242.7183 280.1817
+## mean(weight, na.rm = TRUE) 242.7296 279.6218
 ```
 
 
